@@ -1,0 +1,164 @@
+' Gambas class file
+
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''Variablen deklarieren, hier???'''''''''''''''''''''''
+Public sDateimanager As String
+Public sServerIP As String
+Public sBenutzer As String
+' Public sOrt As String 
+Public sTerminal As String
+Public sManager As String
+
+
+
+
+
+
+
+Public Sub Form_Open()
+
+
+'Was soll beim Start passieren?
+'1. Prüfen ob das Arbeitsverzeichnis vorhanden ist, ggf anlegen
+'2. Speicherdatei vorhanden, ggf. anlegen
+'3. Daten aus der Speicherdatei laden und in die Anwendung füllen
+'
+Dim hFile As Stream
+Dim sLine As String     ' Dateimanager
+Dim sLine2 As String    ' ServerIP
+Dim sLine3 As String    ' Benutzername
+Dim sLine4 As String    ' Terminal
+
+
+
+'ComboBox1.Text = sDateimanager
+'TextBox1.Text = sServerIP
+'TextBox2.Text = sBenutzer
+
+If Exist("~/Schreibtisch/DataSCP") = False Then
+If Exist("~/DataSCP") = False Then
+   Message("Konfiguration existiert noch nicht .\nBitte den Einstellungsdialog öffnen und anpassen.", "OK") 
+   'Mkdir "~/DataSCP"
+   'AbfrageForm.Show
+   
+Endif
+Endif
+
+'If Exist("~/Schreibtisch/DataSCP") = True Then sOrt = "~/Schreibtisch/DataSCP"
+'If Exist("~/DataSCP") = True Then sOrt = "~/DataSCP"
+
+
+If Exist("~/.datascp.txt") = False Then
+   Shell "touch ~/.datascp.txt" Wait
+Endif
+
+'If Exist("~/Schreibtisch/DataSCP") = True Then Message("Der Uploadordner existiert bereits", "OK")
+
+'hier wird geladen und in Variablen gefüllt
+hFile = Open "~/.datascp.txt" For Read
+
+   Line Input #hFile, sLine
+   Line Input #hFile, sLine2
+   Line Input #hFile, sLine3
+   Line Input #hFile, sLine4
+   '   Print sLine, sLine2, sLine3
+   
+   'ComboBox1.Text = sLine
+   'TextBox1.Text = sLine2
+   'TextBox2.Text = sLine3
+   sDateimanager = sLine
+   sServerIP = sLine2
+   sBenutzer = sLine3
+   sTerminal = sLine4
+
+End
+
+
+
+Public Sub Button2_Click()
+'Daten zum Server senden →
+   'sServerIP = TextBox1.Text
+   'sBenutzer = TextBox2.Text
+   'Message("scp -r ~/Schreibtisch/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/DataSCP", "OK")
+   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r ~/Schreibtisch/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/" Wait
+   Shell sTerminal & " -- scp -r ~/Schreibtisch/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/" Wait
+   'Shell "ssh-askpass scp -r ~/Schreibtisch/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/" Wait
+           
+End
+
+Public Sub Button1_Click()
+' Daten vom Server abholen ←
+   'sServerIP = TextBox1.Text
+   'sBenutzer = TextBox2.Text
+   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/DataSCP/ ~/Schreibtisch/" Wait
+   Shell sTerminal & " -- scp -r " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/DataSCP/ ~/Schreibtisch/" Wait
+   
+      
+ End
+
+Public Sub Button6_Click()
+   'Hilfe Button
+   Message("Data-scp ist ein Programm für den einfachen, schnellen und\nsicheren Datenaustausch zwischen zwei Linux PCs über LAN,\n WLAN und ggf. das Internet.\n\nFahren Sie mit der Maus  über die Buttons und Sie erhalten\nTooltipps zur jeweiligen Verwendung. Für eine ausführliche\nBeschreibung nutzen Sie die Hilfeseite über die Taste F1.\n\nGambas Programm:  Data-scp Version 2.0.0\n", "OK")
+   
+End
+
+Public Sub Button4_Click()
+   'Einstellungsbutton
+   AbfrageForm.Show
+   
+End
+
+
+
+Public Sub Button8_Click()
+' Den Uploadordner öffnen
+'If ComboBox1.Text = "Linux auswählen" Then sDateimanager = ""
+If sDateimanager = "Linux Mint 19 - Xfce" Then sManager = "thunar"
+If sDateimanager = "Linux Mint 19 - Mate" Then sManager = "caja"
+If sDateimanager = "Linux Mint 19 - Cinnamon" Then sManager = "nemo" 
+'If sDateimanager = "LXDE - Pcmanfm" Then sManager = "pcmanfm"
+If sDateimanager = "Ubuntu 18.04" Then sManager = "nautilus"
+If sDateimanager = "Kubuntu 18.04" Then sManager = "dolphin"
+'Message(sDateimanager, sManager)
+
+  Shell sManager & " -- ~/Schreibtisch/DataSCP"
+ 
+
+End
+
+
+Public Sub Form_DblClick()
+
+   Message("Sie verwenden " & sDateimanager, "OK")
+   
+End
+
+
+Public Sub Form_KeyPress()
+   ' Hilfe über F1 anzeigen
+   If Key.Code = Key.F1 Then 
+' IF Key.Code = Key.F1 THEN AND FHelp.Closed = FALSE 
+     Form1.Show 
+  Endif 
+  If Key.Code = Key.ESC And Form1.Closed = False Then 
+     Form1.Delete 
+  Endif 
+
+End
+
+
+Public Sub Button3_Click()
+'Programm schließen
+   Shell sManager & " -q" Wait
+   Me.Close
+   
+      
+End
+
+
+
+Public Sub Label2_MouseDown()
+
+   Shell "firefox  https://openyourlinux.blogspot.com/p/data-scp-fur-linux-mint-umgeschrieben.html"
+
+End

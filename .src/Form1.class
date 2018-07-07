@@ -1,0 +1,30 @@
+' Gambas class file
+
+
+Public Sub Form_Open()
+   Form1.X = 600
+   Form1.Y = 400
+   Form1.Text = "F1 - Hilfetext   -   Abbruch mit ESC" 
+ ' FHelp.X = 200 ' u.U. anpassen... 
+ ' FHelp.Y = 200 
+ ' FHelp.Text = "F1-Hilfetext - Abbruch mit ESC" 
+  TextArea1.ReadOnly = True
+End
+
+Public Sub Form_Show()
+  Form1.Arrangement = Arrange.Fill 
+  TextArea1.Background = &H00FFFFDF& 
+  'TextArea1.Text = File.Load("help.txt")
+   
+
+End
+
+
+Public Sub Form_KeyPress()
+
+    If Key.Code = Key.ESC And Form1.Closed = False Then 
+     Form1.Delete 
+  Endif 
+
+End
+

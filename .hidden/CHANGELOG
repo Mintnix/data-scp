@@ -1,0 +1,38 @@
+* Thu Jun 14 2018 Mintnix <pcspezialist@arcor.de> 2.0.1
+
+* Thu Jun 14 2018 Mintnix <pcspezialist@arcor.de> 2.0.1
+- + Shellaufruf für xfce4-terminal angepasst
+- + Icon angepasst
+
+* Wed Jun 13 2018 Mintnix <pcspezialist@arcor.de> 2.0.1
+- + Abhängigkeit gb-gtk hinzugefügt
+
+* Mon Jun 11 2018 Mintnix <pcspezialist@arcor.de> 2.0.0
+- + Abfrage / Anzeige im Einstellungsdialog angepasst
+
+* Sun Jun 10 2018 Mintnix <pcspezialist@arcor.de> 2.0.0
+- + Programm umgebaut mit Gambas 3.11.2 für aktuelles Linux Mint 19 / Ubuntu 18.04
+- + Oberfläche neu gestaltet
+- + Hilfe eingebaut
+- + separater Einstellungsdialog definiert
+- teilweise alten Code entfernt
+
+* Mon Jan 05 2015 Mintnix <pcspezialist@arcor.de> 1.0
+- Icon überarbeitet
+
+* Thu Dec 25 2014 Mintnix <pcspezialist@arcor.de> 1.0
+- + kleinen Fehler berichtigt
+
+* Wed Dec 24 2014 Mintnix <pcspezialist@arcor.de> 1.0
+- + Icon geändert
+
+* Wed Dec 24 2014 Mintnix <pcspezialist@arcor.de> 0.0
+- +Icon ersetzt
+
+* Wed Dec 24 2014 Mintnix <pcspezialist@arcor.de> 0.0
+- Erstes Release nach Überarbeitung der alten Version.
+- + speziell für Linux Mint gedacht (ab Ver. 17)
+- + andere Debianbasierte Distributionen könnten ebnfalls funktionieren
+- + Funktion zum Speichern der Daten hinzugefügt
+- Paketinstallation von ssh-askpass entfernt
+

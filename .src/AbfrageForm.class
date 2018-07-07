@@ -1,0 +1,113 @@
+' Gambas class file
+
+Public sDateimanager As String
+Public sServerIP As String
+Public sBenutzer As String
+' Public sOrt As String 
+Public sTerminal As String
+
+
+Public Sub Form_Open()
+
+Dim hFile As Stream
+Dim sLine As String     ' Dateimanager
+Dim sLine2 As String    ' ServerIP
+Dim sLine3 As String    ' Benutzername
+Dim sLine4 As String    ' Terminal
+
+hFile = Open "~/.datascp.txt" For Read
+
+   Line Input #hFile, sLine
+   Line Input #hFile, sLine2
+   Line Input #hFile, sLine3
+   Line Input #hFile, sLine4
+   '   Print sLine, sLine2, sLine3
+   
+   ComboBox1.Text = sLine
+   TextBox1.Text = sLine2
+   TextBox2.Text = sLine3
+   sDateimanager = sLine
+   sServerIP = sLine2
+   sBenutzer = sLine3
+   sTerminal = sLine4
+
+' Abfrage falls sLine leer sein sollte
+If sLine = "" Then ComboBox1.Text = "Linux auswählen"
+If ComboBox1.Text = "Linux auswählen" Then TextBox1.Text = "Server IP-Adresse"
+If ComboBox1.Text = "Linux auswählen" Then TextBox2.Text = "Benutzername auf dem Server"
+
+
+' Hier wird das richtige Terminal für die entsprechende Ubgebung gewählt
+If ComboBox1.Text = "Linux Mint 19 - Cinnamon" Then sTerminal = "gnome-terminal" 
+If ComboBox1.Text = "Linux Mint 19 - Xfce" Then sTerminal = "xfce4-terminal"
+If ComboBox1.Text = "Linux Mint 19 - Mate" Then sTerminal = "mate-terminal" 
+If ComboBox1.Text = "Kubuntu 18.04" Then sTerminal = "konsole"
+If ComboBox1.Text = "Ubuntu 18.04" Then sTerminal = "gnome-terminal"
+
+If Exist("~/Schreibtisch/DataSCP") = True Then Label1.Text = "Arbeitsordner existiert schon."
+
+End
+
+Public Sub Button1_Click()
+   
+   If Exist("~/Schreibtisch/DataSCP") = False Then Mkdir "~/Schreibtisch/DataSCP"
+   
+End
+
+Public Sub Button2_Click()
+
+   Message("Leider gibt es die Funktion noch nicht.")
+   'Mkdir "~/DataSCP"
+   'AbfrageForm.Close
+
+End
+
+Public Sub ComboBox1_Click()
+
+   
+
+End
+
+
+Public Sub Button5_Click()
+   ' den SSH Server installieren
+   Shell "gnome-terminal -- apt install openssh-server" Wait
+
+End
+Public Sub Button7_Click()
+   ' den Server wieder löschen
+    'Exec ["'sudo apt-get remove openssh-server'"] Wait
+    Shell "gnome-terminal -- apt remove openssh-server" Wait
+    
+
+End
+
+Public Sub Button9_Click()
+'die eingegeben Daten speichern  / eine einfache Routine ,die funktioniert !!!
+   
+   ' Hier wird das richtige Terminal für die entsprechende Ubgebung gewählt
+If ComboBox1.Text = "Linux Mint 19 - Cinnamon" Then sTerminal = "gnome-terminal" 
+If ComboBox1.Text = "Linux Mint 19 - Xfce" Then sTerminal = "xfce4-terminal"
+If ComboBox1.Text = "Linux Mint 19 - Mate" Then sTerminal = "mate-terminal" 
+If ComboBox1.Text = "Kubuntu 18.04" Then sTerminal = "konsole"
+If ComboBox1.Text = "Ubuntu 18.04" Then sTerminal = "gnome-terminal"
+   sDateimanager = ComboBox1.Text
+   sServerIP = TextBox1.Text
+   sBenutzer = TextBox2.Text
+   
+      
+   File.Save("~/.datascp.txt", sDateimanager & gb.NewLine & sServerIP & gb.NewLine & sBenutzer & gb.NewLine & sTerminal)
+   Catch
+' If Error Then Message("Fehler", "ok")
+   If Error Then Return
+         
+End
+
+
+Public Sub Button3_Click()
+
+   Message("Bitte das Programm neu starten, damit die Einstellungen wirksam werden.")
+   AbfrageForm.Close
+   FMain.Close
+
+End

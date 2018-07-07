@@ -1,0 +1,64 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(228.625,11.375,40,32)
+  Background = &HDFFFFF&
+  Resizable = False
+  Border = False
+  Padding = 1
+  { Label1 Label
+    MoveScaled(1,1,42,21)
+    Background = &HBFEFFF&
+    ToolTip = ("Anwendungsbereich")
+    Border = Border.Sunken
+  }
+  { Button8 Button
+    MoveScaled(2,2,33,9)
+    Font = Font["Bold"]
+    Background = Color.Background
+    Foreground = &H0000FF&
+    ToolTip = ("Öffnet den Arbeitsordner, in den Sie alles \nhineinziehen/legen was an den Server\ngeschickt werden soll, bzw. der die Daten\nvom Server nach dem Abholen enthält.")
+    Text = ("Arbeitsordner anzeigen")
+  }
+  { Button1 Button
+    MoveScaled(2,17,33,4)
+    Background = Color.Background
+    Foreground = &H007F00&
+    ToolTip = ("Holt Daten vom Arbeitsordner\n\"DataSCP\" vom Server und\nlegt sie im eigenen \nArbeitsordner ab.")
+    Text = ("Daten vom Server laden      |←")
+  }
+  { Button2 Button
+    MoveScaled(2,12,33,4)
+    Background = Color.Background
+    Foreground = &H007F00&
+    ToolTip = ("Sendet alles, was im aktuellen Zeitpunkt\nim Arbeitsordner vorhanden ist, an den\nentfernten Rechner/Server.")
+    Text = ("Daten zum Server senden    |→")
+  }
+  { Button3 Button
+    MoveScaled(1,28,9,3)
+    Font = Font["Bold"]
+    Foreground = &HFF0000&
+    ToolTip = ("Beendet das Programm.")
+    Text = ("EXIT")
+  }
+  { Button6 Button
+    MoveScaled(28,28,7,3)
+    Foreground = Color.DarkYellow
+    ToolTip = ("Informationen & Hilfe zur Verwendung des Programms.")
+    Text = ("Hilfe")
+  }
+  { Button4 Button
+    MoveScaled(11,28,16,3)
+    Foreground = Color.DarkYellow
+    ToolTip = ("Zeigt den Einstellungsdialog an.")
+    Text = ("Einstellungen")
+  }
+  { Label2 Label
+    MoveScaled(12,23,26,4)
+    Font = Font["Italic"]
+    Foreground = &H7F00FF&
+    ToolTip = ("... noch mehr Infos ?")
+    Text = ("Datentransfer - secure copy")
+    Alignment = Align.Right
+  }
+}

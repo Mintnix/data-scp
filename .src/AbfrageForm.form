@@ -1,0 +1,72 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,37,40)
+  Background = &HDFFFFF&
+  Resizable = False
+  Border = False
+  { Label1 Label
+    MoveScaled(5,5,27,4)
+    Text = ("Wo soll der Arbeitsordner hin?")
+  }
+  { Button1 Button
+    MoveScaled(2,10,16,4)
+    Foreground = &H7F00FF&
+    ToolTip = ("Legt den Arbeitsordner auf den Schreibtisch.\nFür einen schnellen Zugriff optimal, auch wenn\ndas Programm nicht gestartet wurde.")
+    Text = ("Schreibtisch")
+  }
+  { Button2 Button
+    MoveScaled(19,10,16,4)
+    Enabled = False
+    Foreground = &H7F00FF&
+    ToolTip = ("Die Funktion ist noch nicht freigeschaltet.")
+    Text = ("Home Ordner")
+  }
+  { ComboBox1 ComboBox
+    MoveScaled(2,16,33,4)
+    ToolTip = ("Linux Distribution vorher richtig einstellen.")
+    ReadOnly = True
+    List = [("Linux auswählen"), ("Linux Mint 19 - Cinnamon"), ("Linux Mint 19 - Mate"), ("Linux Mint 19 - Xfce"), ("Ubuntu 18.04"), ("Kubuntu 18.04"), ("eigene Einstellung")]
+    Border = False
+  }
+  { TextBox1 TextBox
+    MoveScaled(2,22,33,4)
+    ToolTip = ("IP des entfernten Rechner eingeben")
+    Text = ("Server IP-Adresse ?")
+    Alignment = Align.Center
+  }
+  { TextBox2 TextBox
+    MoveScaled(2,28,33,4)
+    ToolTip = ("Benutzername des entfernten Rechner eingeben")
+    Text = ("Benutzername auf Server ?")
+    Alignment = Align.Center
+  }
+  { Button5 Button
+    MoveScaled(16,34,14,4)
+    Foreground = Color.DarkYellow
+    ToolTip = ("Installiert das Paket openssh-server auf dem Rechner,\nwenn er als Server verwendet werden soll. Dieser\nist dann von entfernten Clienten erreichbar. \nDer entsprechende Dienst wird automatisch bei \nSystemstart geladen. Will man dies Rückgangig machen,\nso kann man in den Verwaltungstools der entsprechenden\nOberflächen den Dienst vom Autostart ausschließen, oder\nman deinstalliert das openssh-server Paket wieder vom\nRechner selbst.")
+    Text = ("SSH-Server")
+  }
+  { Button7 Button
+    MoveScaled(31,34,4,4)
+    Foreground = Color.DarkRed
+    ToolTip = ("Entfernt den SSH Server \nwieder vom System.")
+    Text = ("X")
+  }
+  { Button9 Button
+    MoveScaled(2,34,13,4)
+    Font = Font["Bold"]
+    Foreground = Color.Orange
+    ToolTip = ("Speichert die aktuellen Einstellungen.\n")
+    Text = ("↓")
+  }
+  { Label2 Label
+    MoveScaled(1,1,18,4)
+    Font = Font["Bold"]
+    Text = ("Einstellungen")
+  }
+  { Button3 Button
+    MoveScaled(24,1,11,3)
+    Text = ("Schließen")
+  }
+}
