@@ -1,13 +1,13 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(228.625,11.375,40,32)
+  MoveScaled(228.625,11.375,41,32)
   Background = &HDFFFFF&
   Resizable = False
   Border = False
   Padding = 1
   { Label1 Label
-    MoveScaled(1,1,42,21)
+    MoveScaled(1,1,41,21)
     Background = &HBFEFFF&
     ToolTip = ("Anwendungsbereich")
     Border = Border.Sunken
