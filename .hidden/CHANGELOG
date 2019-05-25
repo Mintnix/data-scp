@@ -1,3 +1,14 @@
+* Sat May 25 2019 Mintnix <pcspezialist@arcor.de> 2.1.0
+
+* Sat May 25 2019 Mintnix <pcspezialist@arcor.de> 2.1.0
+- + - Programmoberfläche und Funktion angepasst
+- + Trayicon hinzugefügt
+- + Menüleiste hinzugefügt
+- Buttons auf Oberfläche entfernt
+- alter Versionsname im Programm geändert
+- + Arbeitsordner nun im Homeordner
+- keine Kompatibilität mit älteren Versionen mehr
+
 * Mon Jul 09 2018 Mintnix <pcspezialist@arcor.de> 2.0.2
 - Von Freeware zu GPL geändert.
 - Quelltext veröffentlichen.
