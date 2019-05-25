@@ -1,5 +1,30 @@
 # Gambas Form File 3.0
 
-{ eigeneEinstellung Form
-  MoveScaled(0,0,64,64)
+{ Form Form
+  MoveScaled(0,0,46,21)
+  Background = &HDFFFFF&
+  Border = False
+  Stacking = Window.Above
+  { Label1 Label
+    MoveScaled(1,1,44,9)
+    Foreground = Color.Blue
+    Text = ("Benennen Sie den (Standard) -Dateimanager\nund -Terminal Ihrer Linux Distribution.")
+    Alignment = Align.Center
+    Border = Border.Plain
+  }
+  { TextBox1 TextBox
+    MoveScaled(1,11,21,4)
+    ToolTip = ("Schreiben Sie hier den Befehl zum Programmaufruf\ndes verwendeten Dateimanagers hinein.\n(z.B. \"dolphin\" für KDE Distribiution)")
+    Text = ("DATEIMANAGER")
+  }
+  { TextBox2 TextBox
+    MoveScaled(24,11,21,4)
+    ToolTip = ("Schreiben Sie hier den Befehl zum Programmaufruf\ndes verwendeten Terminals hinein.\n(z.B. \"konsole\" für KDE Distribiution)")
+    Text = ("TERMINAL")
+  }
+  { Button1 Button
+    MoveScaled(1,16,44,4)
+    ToolTip = ("Schließt den Dialog.\nBitte abspeichern unter den\nEinstellungen nicht vergessen.")
+    Text = Shortcut(("Schließen"), "S")
+  }
 }

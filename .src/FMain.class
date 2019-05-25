@@ -5,9 +5,15 @@
 Public sDateimanager As String
 Public sServerIP As String
 Public sBenutzer As String
-' Public sOrt As String 
 Public sTerminal As String
-Public sManager As String
+Static Public sManager As String
+
+'globale Variablen sind Static - mit Fmain. aufrufen
+Static Public sGlobal1 As String
+Static Public sGlobal2 As String
+'Static Public sTray As String = "minimiert"
+
+
 
 
 
@@ -28,6 +34,9 @@ Dim sLine As String     ' Dateimanager
 Dim sLine2 As String    ' ServerIP
 Dim sLine3 As String    ' Benutzername
 Dim sLine4 As String    ' Terminal
+Dim sLine5 As String    ' individuelle Einstellung Dateimanager
+Dim sLine6 As String    ' Tray aktiviert?
+
 
 
 
@@ -35,19 +44,15 @@ Dim sLine4 As String    ' Terminal
 'TextBox1.Text = sServerIP
 'TextBox2.Text = sBenutzer
 
-If Exist("~/Schreibtisch/DataSCP") = False Then
+
 If Exist("~/DataSCP") = False Then
    Message("Konfiguration existiert noch nicht .\nBitte den Einstellungsdialog öffnen und anpassen.", "OK") 
-   'Mkdir "~/DataSCP"
-   'AbfrageForm.Show
+
    
 Endif
-Endif
-
-'If Exist("~/Schreibtisch/DataSCP") = True Then sOrt = "~/Schreibtisch/DataSCP"
-'If Exist("~/DataSCP") = True Then sOrt = "~/DataSCP"
 
 
+''Konfigurationsdatei wird automatisch angelegt
 If Exist("~/.datascp.txt") = False Then
    Shell "touch ~/.datascp.txt" Wait
 Endif
@@ -61,6 +66,10 @@ hFile = Open "~/.datascp.txt" For Read
    Line Input #hFile, sLine2
    Line Input #hFile, sLine3
    Line Input #hFile, sLine4
+   Line Input #hFile, sLine5
+   Line Input #hFile, sLine6
+   
+   
    '   Print sLine, sLine2, sLine3
    
    'ComboBox1.Text = sLine
@@ -70,8 +79,17 @@ hFile = Open "~/.datascp.txt" For Read
    sServerIP = sLine2
    sBenutzer = sLine3
    sTerminal = sLine4
+   sGlobal1 = sLine5
+   'sTray = sLine6
+   
+   
+   'Menübefehle nicht alle anzeigen!
+   Menu8.Hide
+   Menu9.Hide
+
 
 End
+
 
 
 
@@ -80,8 +98,8 @@ Public Sub Button2_Click()
    'sServerIP = TextBox1.Text
    'sBenutzer = TextBox2.Text
    'Message("scp -r ~/Schreibtisch/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/DataSCP", "OK")
-   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r ~/Schreibtisch/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/" Wait
-   Shell sTerminal & " -- scp -r ~/Schreibtisch/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/" Wait
+   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
+   Shell sTerminal & " -- scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
    'Shell "ssh-askpass scp -r ~/Schreibtisch/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/" Wait
            
 End
@@ -90,15 +108,26 @@ Public Sub Button1_Click()
 ' Daten vom Server abholen ←
    'sServerIP = TextBox1.Text
    'sBenutzer = TextBox2.Text
-   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/DataSCP/ ~/Schreibtisch/" Wait
-   Shell sTerminal & " -- scp -r " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/DataSCP/ ~/Schreibtisch/" Wait
+   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait
+   Shell sTerminal & " -- scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait
+   
+    ' Den Uploadordner öffnen
+   If sDateimanager = "Linux Mint 19 - Xfce" Then sManager = "thunar"
+   If sDateimanager = "Linux Mint 19 - Mate" Then sManager = "caja"
+   If sDateimanager = "Linux Mint 19 - Cinnamon" Then sManager = "nemo" 
+   If sDateimanager = "Ubuntu 18.04" Then sManager = "nautilus"
+   If sDateimanager = "Kubuntu 18.04" Then sManager = "dolphin"
+   If sDateimanager = "eigene Einstellung" Then sManager = sGlobal1
+   
+
+   Shell sManager & " -- ~/DataSCP"
    
       
  End
 
 Public Sub Button6_Click()
    'Hilfe Button
-   Message("Data-scp ist ein Programm für den einfachen, schnellen und\nsicheren Datenaustausch zwischen zwei Linux PCs über LAN,\n WLAN und ggf. das Internet.\n\nFahren Sie mit der Maus  über die Buttons und Sie erhalten\nTooltipps zur jeweiligen Verwendung. Für eine ausführliche\nBeschreibung nutzen Sie die Hilfeseite über die Taste F1.\n\nGambas Programm:  Data-scp Version 2.0.0\n", "OK")
+   Message("Data-scp ist ein Programm für den einfachen, schnellen und\nsicheren Datenaustausch zwischen zwei Linux PCs über LAN,\n WLAN und ggf. das Internet.\n\nFahren Sie mit der Maus  über die Buttons und Sie erhalten\nTooltipps zur jeweiligen Verwendung. Für eine ausführliche\nBeschreibung nutzen Sie die Hilfeseite über die Taste F1.\n\nGambas Programm:  Data-scp Version 2.1.0", "OK")
    
 End
 
@@ -111,17 +140,19 @@ End
 
 
 Public Sub Button8_Click()
-' Den Uploadordner öffnen
+
+'' Den Uploadordner öffnen
 'If ComboBox1.Text = "Linux auswählen" Then sDateimanager = ""
 If sDateimanager = "Linux Mint 19 - Xfce" Then sManager = "thunar"
 If sDateimanager = "Linux Mint 19 - Mate" Then sManager = "caja"
 If sDateimanager = "Linux Mint 19 - Cinnamon" Then sManager = "nemo" 
-'If sDateimanager = "LXDE - Pcmanfm" Then sManager = "pcmanfm"
 If sDateimanager = "Ubuntu 18.04" Then sManager = "nautilus"
 If sDateimanager = "Kubuntu 18.04" Then sManager = "dolphin"
+If sDateimanager = "eigene Einstellung" Then sManager = sGlobal1
+
 'Message(sDateimanager, sManager)
 
-  Shell sManager & " -- ~/Schreibtisch/DataSCP"
+  Shell sManager & " -- ~/DataSCP"
  
 
 End
@@ -150,6 +181,7 @@ End
 Public Sub Button3_Click()
 'Programm schließen
    Shell sManager & " -q" Wait
+   TrayIcons.DeleteAll
    Me.Close
    
       
@@ -159,6 +191,96 @@ End
 
 Public Sub Label2_MouseDown()
 
-   Shell "firefox  https://openyourlinux.blogspot.com/p/data-scp-fur-linux-mint-umgeschrieben.html"
+   Shell "firefox  https://openyourlinux.blogspot.com/p/data-scp-version-21x-bringt-einige.html"
+
+End
+
+Public Sub Menu4_Click()
+
+   'Hilfe Button
+   Message("Data-scp ist ein Programm für den einfachen, schnellen und\nsicheren Datenaustausch zwischen zwei Linux PCs über LAN,\n WLAN und ggf. das Internet.\n\nFahren Sie mit der Maus  über die Buttons und Sie erhalten\nTooltipps zur jeweiligen Verwendung. Für eine ausführliche\nBeschreibung nutzen Sie die Hilfeseite über die Taste F1.\n\nGambas Programm:  Data-scp Version 2.1.0", "OK")
+
+End
+
+Public Sub Menu3_Click()
+
+      'Einstellungsbutton öffnet Abfragedialog
+   AbfrageForm.Show
+
+End
+
+Public Sub Menu5_Click()
+
+   'Programm schließen
+   Shell sManager & " -q" Wait
+   TrayIcons.DeleteAll
+   Me.Close
+   
+
+End
+
+Public Sub TrayIcon1_Click()
+
+   ' Den Uploadordner öffnen
+   If sDateimanager = "Linux Mint 19 - Xfce" Then sManager = "thunar"
+   If sDateimanager = "Linux Mint 19 - Mate" Then sManager = "caja"
+   If sDateimanager = "Linux Mint 19 - Cinnamon" Then sManager = "nemo" 
+   If sDateimanager = "Ubuntu 18.04" Then sManager = "nautilus"
+   If sDateimanager = "Kubuntu 18.04" Then sManager = "dolphin"
+   If sDateimanager = "eigene Einstellung" Then sManager = sGlobal1
+   
+
+   Shell sManager & " -- ~/DataSCP"
+
+End
+
+Public Sub Menu2_Click()
+'Hilfe F1 anzeigen
+   Form1.Show
+
+End
+
+Public Sub Menu7_Click()
+   'Programm ins Tray minimieren und Menü auffüllen
+   
+   Menu8.Show
+   Menu9.Show
+      
+   TrayIcon1.Show 
+   FMain.Hide 
+   Menu7.Hide
+      
+   
+
+End
+
+Public Sub TrayIcon1_MiddleClick()
+
+   'Programm wieder anzeigen und Menü anpassen
+   FMain.Show
+   Menu8.Hide
+   Menu9.Hide
+   Menu7.Show
+   TrayIcon1.Hide
+
+End
+
+
+Public Sub Menu8_Click()
+
+ '' Daten senden über Trayicon
+ 
+      If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
+      Shell sTerminal & " -- scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
+
+End
+
+Public Sub Menu9_Click()
+
+'' Daten vom Server abrufen über Trayicon
+      
+      If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait
+      Shell sTerminal & " -- scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait  
+   
 
 End

@@ -1,64 +1,84 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(228.625,11.375,41,32)
+  MoveScaled(388.8889,11.3333,39,36)
   Background = &HDFFFFF&
   Resizable = False
   Border = False
   Padding = 1
+  { Menu1 Menu
+    Text = Shortcut(("Programm"), "P")
+    { Menu8 Menu
+      Text = ("Daten senden")
+    }
+    { Menu9 Menu
+      Text = ("Daten abrufen")
+    }
+    { Menu3 Menu
+      Text = ("Einstellungen")
+    }
+    { Menu2 Menu
+      Text = ("Hilfe")
+    }
+    { Menu4 Menu
+      Text = ("Über ") & "..."
+    }
+    { Menu6 Menu
+    }
+    { Menu7 Menu
+      Text = ("Minimieren")
+    }
+    { Menu5 Menu
+      Text = ("Beenden")
+    }
+  }
   { Label1 Label
-    MoveScaled(1,1,41,21)
+    MoveScaled(2,1,35,21)
     Background = &HBFEFFF&
     ToolTip = ("Anwendungsbereich")
     Border = Border.Sunken
   }
   { Button8 Button
-    MoveScaled(2,2,33,9)
+    MoveScaled(3,2,33,9)
     Font = Font["Bold"]
     Background = Color.Background
     Foreground = &H0000FF&
     ToolTip = ("Öffnet den Arbeitsordner, in den Sie alles \nhineinziehen/legen was an den Server\ngeschickt werden soll, bzw. der die Daten\nvom Server nach dem Abholen enthält.")
-    Text = ("Arbeitsordner anzeigen")
+    Text = Shortcut(("Arbeitsordner anzeigen"), "a")
   }
   { Button1 Button
-    MoveScaled(2,17,33,4)
+    MoveScaled(3,17,33,4)
     Background = Color.Background
     Foreground = &H007F00&
     ToolTip = ("Holt Daten vom Arbeitsordner\n\"DataSCP\" vom Server und\nlegt sie im eigenen \nArbeitsordner ab.")
-    Text = ("Daten vom Server laden      |←")
+    Text = Shortcut(("Daten vom Server laden       |←"), "l")
   }
   { Button2 Button
-    MoveScaled(2,12,33,4)
+    MoveScaled(3,12,33,4)
     Background = Color.Background
     Foreground = &H007F00&
     ToolTip = ("Sendet alles, was im aktuellen Zeitpunkt\nim Arbeitsordner vorhanden ist, an den\nentfernten Rechner/Server.")
-    Text = ("Daten zum Server senden    |→")
+    Text = Shortcut(("Daten zum Server senden    |→"), "s")
   }
   { Button3 Button
-    MoveScaled(1,28,9,3)
+    MoveScaled(2,28,35,3)
     Font = Font["Bold"]
     Foreground = &HFF0000&
     ToolTip = ("Beendet das Programm.")
-    Text = ("EXIT")
-  }
-  { Button6 Button
-    MoveScaled(28,28,7,3)
-    Foreground = Color.DarkYellow
-    ToolTip = ("Informationen & Hilfe zur Verwendung des Programms.")
-    Text = ("Hilfe")
-  }
-  { Button4 Button
-    MoveScaled(11,28,16,3)
-    Foreground = Color.DarkYellow
-    ToolTip = ("Zeigt den Einstellungsdialog an.")
-    Text = ("Einstellungen")
+    Text = Shortcut(("Beenden"), "B")
   }
   { Label2 Label
-    MoveScaled(12,23,26,4)
+    MoveScaled(12,23,27,4)
     Font = Font["Italic"]
-    Foreground = &H7F00FF&
+    Foreground = &HA0A0A0&
     ToolTip = ("... noch mehr Infos ?")
     Text = ("Datentransfer - secure copy")
-    Alignment = Align.Right
+    Alignment = Align.Center
+  }
+  { TrayIcon1 #TrayIcon
+    #MoveScaled(5,21)
+    Tooltip = ("Linksklick öffnet den Arbeitsordner.\nRechtsklick zeigt Menü an.\nMittelklick öffnet Programm.")
+    Picture = Picture["data-scp.png"]
+    PopupMenu = "Menu1"
   }
 }

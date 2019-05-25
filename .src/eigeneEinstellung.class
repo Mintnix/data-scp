@@ -1,2 +1,15 @@
 ' Gambas class file
 
+  
+
+
+
+Public Sub Button1_Click()
+
+   FMain.sGlobal1 = TextBox1.Text
+   FMain.sGlobal2 = TextBox2.Text
+   'Message("GlobaleVariablen = " & FMain.sGlobal1 & " " & FMain.sGlobal2, "OK")
+   
+   eigeneEinstellung.Close
+
+End
