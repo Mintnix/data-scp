@@ -1,3 +1,7 @@
+* Sat May 16 2020 Mintnix <pcspezialist@arcor.de> 2.1.1
+-  - nach Daten abholen automatisch Arbeitsordner öffnen entfernt
+-  + Fehlerbehebung in der Auswertung von Xfce-Version (Änderung If Else)
+
 * Sat May 25 2019 Mintnix <pcspezialist@arcor.de> 2.1.0
 
 * Sat May 25 2019 Mintnix <pcspezialist@arcor.de> 2.1.0

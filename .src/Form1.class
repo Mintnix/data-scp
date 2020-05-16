@@ -28,3 +28,9 @@ Public Sub Form_KeyPress()
 
 End
 
+
+Public Sub TextArea1_KeyPress()
+
+   
+
+End
