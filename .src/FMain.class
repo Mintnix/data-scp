@@ -86,6 +86,11 @@ hFile = Open "~/.datascp.txt" For Read
    'Menübefehle nicht alle anzeigen!
    Menu8.Hide
    Menu9.Hide
+   
+   'TEST
+ 
+   
+   
 
 
 End
@@ -98,32 +103,32 @@ Public Sub Button2_Click()
    'sServerIP = TextBox1.Text
    'sBenutzer = TextBox2.Text
    'Message("scp -r ~/Schreibtisch/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/DataSCP", "OK")
-   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
-   Shell sTerminal & " -- scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
+   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Else Shell sTerminal & " -- scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
+   
    'Shell "ssh-askpass scp -r ~/Schreibtisch/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/" Wait
            
 End
 
 Public Sub Button1_Click()
 ' Daten vom Server abholen ←
-   'sServerIP = TextBox1.Text
-   'sBenutzer = TextBox2.Text
-   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait
-   Shell sTerminal & " -- scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait
-   
-    ' Den Uploadordner öffnen
+               
+   ' Den Uploadordner öffnen
    If sDateimanager = "Linux Mint 19 - Xfce" Then sManager = "thunar"
    If sDateimanager = "Linux Mint 19 - Mate" Then sManager = "caja"
    If sDateimanager = "Linux Mint 19 - Cinnamon" Then sManager = "nemo" 
    If sDateimanager = "Ubuntu 18.04" Then sManager = "nautilus"
    If sDateimanager = "Kubuntu 18.04" Then sManager = "dolphin"
    If sDateimanager = "eigene Einstellung" Then sManager = sGlobal1
-   
 
-   Shell sManager & " -- ~/DataSCP"
-   
+   'Shell sManager & " -- ~/DataSCP" 
+   'sServerIP = TextBox1.Text
+   'sBenutzer = TextBox2.Text
+   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Else Shell sTerminal & " -- scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait 
+  ' Shell sManager & " -- ~/DataSCP"
       
- End
+   
+End
+
 
 Public Sub Button6_Click()
    'Hilfe Button
