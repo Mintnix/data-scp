@@ -1,0 +1,404 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"#-#-#-#-#  #project.pot (data-scp 3.14.3)  #-#-#-#-#\n"
+"Project-Id-Version: data-scp 3.14.3\n"
+"POT-Creation-Date: 2020-06-06 14:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  AbfrageForm.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2020-06-06 14:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  FMain.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2020-06-06 14:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  Form1.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2020-06-06 14:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  eigeneEinstellung.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2020-06-06 14:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .project:1
+msgid "Data-SCP"
+msgstr ""
+
+#: .project:2
+msgid ""
+"Grafisches Werkzeug für secure copy (scp) zum einfachen \n"
+"Austausch von Daten zwischen zwei Computern unter Linux."
+msgstr ""
+
+#: AbfrageForm.form:24
+msgid ""
+"Der Ordner für den Daten-\n"
+"austausch wird automatisch\n"
+"beim Speichern im Home-\n"
+"Verzeichnis erstellt."
+msgstr ""
+
+#: AbfrageForm.form:29
+msgid ""
+"Linux Distribution vorher richtig einstellen. \n"
+"Welches Linux Mint wird hier gerade benutzt?\n"
+"\n"
+"Für individuelle Einstellungen wählen Sie \"eigene Einstellung\"\n"
+"aus der Liste aus. Anschließend klicken Sie mit der rechten \n"
+"Maustaste doppelt auf \"eigene Einstellung\". "
+msgstr ""
+
+#: AbfrageForm.form:31
+msgid "Linux auswählen"
+msgstr ""
+
+#: AbfrageForm.form:31
+msgid "Linux Mint 19 - Cinnamon"
+msgstr ""
+
+#: AbfrageForm.form:31
+msgid "Linux Mint 19 - Mate"
+msgstr ""
+
+#: AbfrageForm.form:31
+msgid "Linux Mint 19 - Xfce"
+msgstr ""
+
+#: AbfrageForm.form:31
+msgid "Ubuntu 18.04"
+msgstr ""
+
+#: AbfrageForm.form:31
+msgid "Kubuntu 18.04"
+msgstr ""
+
+#: AbfrageForm.form:31
+msgid "eigene Einstellung"
+msgstr ""
+
+#: AbfrageForm.form:37
+msgid "IP des entfernten Rechner eingeben"
+msgstr ""
+
+#: AbfrageForm.form:38
+msgid "Server IP-Adresse ?"
+msgstr ""
+
+#: AbfrageForm.form:44
+msgid "Benutzername des entfernten Rechner eingeben"
+msgstr ""
+
+#: AbfrageForm.form:45
+msgid "Benutzername auf Server ?"
+msgstr ""
+
+#: AbfrageForm.form:52
+msgid ""
+"Installiert das Paket openssh-server auf dem Rechner,\n"
+"wenn er als Server verwendet werden soll. Dieser\n"
+"ist dann von entfernten Clienten erreichbar. \n"
+"Der entsprechende Dienst wird automatisch bei \n"
+"Systemstart geladen. Will man dies Rückgangig machen,\n"
+"so kann man in den Verwaltungstools der entsprechenden\n"
+"Oberflächen den Dienst vom Autostart ausschließen, oder\n"
+"man deinstalliert das openssh-server Paket wieder vom\n"
+"Rechner selbst."
+msgstr ""
+
+#: AbfrageForm.form:53
+msgid "SSH-Server"
+msgstr ""
+
+#: AbfrageForm.form:59
+msgid ""
+"Entfernt den SSH Server \n"
+"wieder vom System."
+msgstr ""
+
+#: AbfrageForm.form:60
+msgid "X"
+msgstr ""
+
+#: AbfrageForm.form:67
+msgid "Speichert die aktuellen Einstellungen."
+msgstr ""
+
+#: AbfrageForm.form:68
+msgid "Speichern"
+msgstr ""
+
+#: AbfrageForm.form:75 FMain.form:40
+msgid "Einstellungen"
+msgstr ""
+
+#: AbfrageForm.form:80
+msgid "Schließt die Einstellungen und beendet das Programm."
+msgstr ""
+
+#: AbfrageForm.form:81 eigeneEinstellung.form:38
+msgid "Schließen"
+msgstr ""
+
+#: AbfrageForm.form:86
+msgid ""
+"Client oder Server oder beides? \n"
+"\n"
+"Damit das Programm richtig funktioniert gibt es mindestens einen Server in "
+"Ihrem Netzwerk. \n"
+"Von diesem können Clienten Daten herunterladen oder hochladen. Will man vom "
+"jeweils \n"
+"anderen Rechner die selbige Funktion, so ist der openssh Server zu "
+"installieren, falls nicht \n"
+"schon vorinstalliert.\n"
+"Merke: Der Rechner an dem ich gerade sitze ist der Client. Der entfernte "
+"Rechner ist der Server."
+msgstr ""
+
+#: AbfrageForm.form:92
+msgid ""
+"Öffnet sie Datei known_hosts, \n"
+"welche die Serverliste enthält."
+msgstr ""
+
+#: AbfrageForm.form:93
+msgid "?!"
+msgstr ""
+
+#: FMain.form:29
+msgid "Programm"
+msgstr ""
+
+#: FMain.form:32
+msgid "Daten senden"
+msgstr ""
+
+#: FMain.form:36
+msgid "Daten abrufen"
+msgstr ""
+
+#: FMain.form:44
+msgid "Hilfe"
+msgstr ""
+
+#: FMain.form:48
+msgid "Über "
+msgstr ""
+
+#: FMain.form:55
+msgid "Minimieren"
+msgstr ""
+
+#: FMain.form:59
+msgid "Beenden"
+msgstr ""
+
+#: FMain.form:66
+msgid "Anwendungsbereich"
+msgstr ""
+
+#: FMain.form:75
+msgid ""
+"Öffnet den Arbeitsordner, in den Sie alles \n"
+"hineinziehen/legen was an den Server\n"
+"geschickt werden soll, bzw. der die Daten\n"
+"vom Server nach dem Abholen enthält."
+msgstr ""
+
+#: FMain.form:76
+msgid "Arbeitsordner anzeigen"
+msgstr ""
+
+#: FMain.form:83
+msgid ""
+"Holt Daten vom Arbeitsordner\n"
+"\"DataSCP\" vom Server und\n"
+"legt sie im eigenen \n"
+"Arbeitsordner ab."
+msgstr ""
+
+#: FMain.form:84
+msgid "Daten vom Server laden       |←"
+msgstr ""
+
+#: FMain.form:91
+msgid ""
+"Sendet alles, was im aktuellen Zeitpunkt\n"
+"im Arbeitsordner vorhanden ist, an den\n"
+"entfernten Rechner/Server."
+msgstr ""
+
+#: FMain.form:92
+msgid "Daten zum Server senden    |→"
+msgstr ""
+
+#: FMain.form:99
+msgid "Beendet das Programm."
+msgstr ""
+
+#: FMain.form:107
+msgid "... noch mehr Infos ?"
+msgstr ""
+
+#: FMain.form:108
+msgid "Datentransfer - secure copy"
+msgstr ""
+
+#: FMain.form:113
+msgid ""
+"Linksklick öffnet den Arbeitsordner.\n"
+"Rechtsklick zeigt Menü an.\n"
+"Mittelklick öffnet Programm."
+msgstr ""
+
+#: Form1.form:12
+msgid ""
+"Data-scp ist eine einfach zu bedienende, grafische Oberfläche für den Befehl "
+"scp (secure copy)\n"
+"unter Linux. Stark vereinfacht bietet dieses Programm einen sicheren "
+"Datenaustausch\n"
+"zwischen zwei Computer. Ein Rechner fungiert als Server, der andere als "
+"Client.\n"
+"______________________________________________________________________________________________________\n"
+"\n"
+"Benutzen Sie den Einstellungsdialog um die Konfiguration anzupassen.\n"
+"\n"
+"Als ersten Schritt wählen Sie Ihre Linux (Mint) Distribution aus. Dies ist "
+"Bedingung, damit\n"
+"der entsprechende Dateimanager eingestellt wird und dieser den Arbeitsordner "
+"anzeigen \n"
+"kann. Der Arbeitsordner ist dafür da, dass Sie in diesen die Daten legen "
+"können, welche beim\n"
+"\"Senden\" auf den entfernten Rechner sollen. Ebenso finden Sie die Daten "
+"vom Server in\n"
+"diesem Ordner nach dem \"Abrufen\" wieder. Der Arbeitsordner wird "
+"automatisch im \n"
+"Home-Verzeichnes des aktuellen Benutzers erstellt. \n"
+"(In älteren Progammversionen wurde der Ordner auf dem Desktop angelegt. Dies "
+"wurde in \n"
+"der neuen Version geändert. Bitte verwenden Sie aus Kompatibilitätsgründen "
+"möglichst die\n"
+"gleichen Versionen von data-scp auf Ihren Rechnern.)\n"
+"\n"
+"Als zweiten Punkt benötigen Sie die IP-Adresse des Servers. Diese kann man "
+"über die \n"
+"Netzwerkverbindung am entsprechenden Rechner ausfindig machen. Die IP-"
+"Adresse in das\n"
+"vorgesehene Feld eintragen. Jetzt fehlt nur noch der Benutzername, der auf "
+"dem Server \n"
+"verwendet wird. Ebenfalls entsprechend in das richtige Feld eintippen. \n"
+"\n"
+"Der Server (entfernter Rechner) benötigt zwingend das open-ssh Paket, "
+"welches\n"
+"in der Paketverwaltung nachzuinstallieren ist, um als Server zu "
+"funktionieren.\n"
+"Data-scp bietet einen entsprechenden Button, über den das Paket installiert "
+"werden kann.  \n"
+"\n"
+"Damit die Einstellungen beim nächsten Start der Anwendung erhalten bleiben, "
+"sollten\n"
+"Sie diese über den entsprechenden Button speichern.  \n"
+"\n"
+"\n"
+"Hinweis: Bei Auswahl \"eigene Einstellung\" kann man einen eigenen "
+"Dateimanager und \n"
+"Terminal abspeichern. Beachten Sie den Tooltipp, die Auswahl \"eigene "
+"Einstellung\" mit \n"
+"doppeltem Rechtsklick öffnen und entsprechend ausfüllen.\n"
+"Dies bietet sich bei Linux-Distributionen an, welche nicht zu Linux Mint "
+"gehören. \n"
+"Sollte die Syntax, z.B. zum Starten eines Befehls über das eingetragene "
+"Terminal, abweichen,\n"
+"kann es zu Fehl- oder Nicht-Funktion führen. Starten Sie data-scp über ein "
+"Terminal um\n"
+"eventuell auftretende Fehlermeldungen abzufragen. \n"
+"\n"
+"______________________________________________________________________________________________________\n"
+"\n"
+"Achtung, beim ersten Zugriff auf den Server kommt eine Abfrage, ob man "
+"diesem Rechner\n"
+"vertraut. Die Frage sollte man natürlich mit \"yes\" beantworten. Damit wird "
+"der sogenannte\n"
+"Fingerabdruck des Servers in die Datei known_hosts gespeichert. Die Datei "
+"findet man im \n"
+"eigenen Home-Verzeichnis unter dem versteckten Ordner .ssh wieder. \n"
+"\n"
+"Sollte es Probleme bei der Übertragung geben, so kann dies daran liegen, "
+"dass z.B. etwas am\n"
+"Server verändert wurde. Vielleicht eine neue Linux Version aufgespielt? Dann "
+"stimmt der \n"
+"Fingerabdruck des Servers natürlich nicht mehr und die Datenübertragung "
+"findet nicht statt,\n"
+"sondern wird mit Fehler abgebrochen. In diesem Falle ist die Datei zu öffnen "
+"und der alte \n"
+"Eintrag zu löschen.\n"
+"\n"
+"Sollte beim Versuch senden/empfangen das Terminal leer bleiben, dann ist "
+"entweder der \n"
+"Server-PC ausgeschaltet oder vom Netzwerk getrennt. \n"
+"\n"
+"_______________________________________________________________________________________________________\n"
+"\n"
+"Die meisten Buttons und Eingabeboxen sind mit Tooltipps hinterlegt. Fahren "
+"Sie einfach mit \n"
+"der Maus über das entsprechende Feld.  \n"
+"\n"
+"_______________________________________________________________________________________________________\n"
+"\n"
+"Mit der Tastenkombination aus ALT und dem entsprechenden Buchstaben kann das "
+"Programm\n"
+"auch ohne Maus bedient werden. Als Beispiel: ALT + P öffent das Menü.\n"
+"\n"
+"_______________________________________________________________________________________________________\n"
+"SYSTEMVORAUSSETZUNG:\n"
+"\n"
+"\tLinux Mint ab Version 19  /  Ubuntu ab 18.04\n"
+"\tGambas Bibliothek ab Version 3.12\n"
+"\tbenötigt einen SSH-Server\n"
+msgstr ""
+
+#: eigeneEinstellung.form:18
+msgid ""
+"Benennen Sie den (Standard) -Dateimanager\n"
+"und -Terminal Ihrer Linux Distribution."
+msgstr ""
+
+#: eigeneEinstellung.form:25
+msgid ""
+"Schreiben Sie hier den Befehl zum Programmaufruf\n"
+"des verwendeten Dateimanagers hinein.\n"
+"(z.B. \"dolphin\" für KDE Distribiution)"
+msgstr ""
+
+#: eigeneEinstellung.form:26
+msgid "DATEIMANAGER"
+msgstr ""
+
+#: eigeneEinstellung.form:31
+msgid ""
+"Schreiben Sie hier den Befehl zum Programmaufruf\n"
+"des verwendeten Terminals hinein.\n"
+"(z.B. \"konsole\" für KDE Distribiution)"
+msgstr ""
+
+#: eigeneEinstellung.form:32
+msgid "TERMINAL"
+msgstr ""
+
+#: eigeneEinstellung.form:37
+msgid ""
+"Schließt den Dialog.\n"
+"Bitte abspeichern unter den\n"
+"Einstellungen nicht vergessen."
+msgstr ""
