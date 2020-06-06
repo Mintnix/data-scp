@@ -2,7 +2,7 @@ FMain
 Data-SCP
 0
 0
-2.1.1
+2.1.2
 
 gb.image
 gb.gui
@@ -10,7 +10,5 @@ gb.form
 gb.dbus
 gb.gui.trayicon
 gb.net
-gb.net.curl
-gb.net.smtp
 gb.vb
 

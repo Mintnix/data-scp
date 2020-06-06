@@ -203,7 +203,7 @@ End
 Public Sub Menu4_Click()
 
    'Hilfe Button
-   Message("Data-scp ist ein Programm für den einfachen, schnellen und\nsicheren Datenaustausch zwischen zwei Linux PCs über LAN,\n WLAN und ggf. das Internet.\n\nFahren Sie mit der Maus  über die Buttons und Sie erhalten\nTooltipps zur jeweiligen Verwendung. Für eine ausführliche\nBeschreibung nutzen Sie die Hilfeseite über die Taste F1.\n\nGambas Programm:  Data-scp Version 2.1.0", "OK")
+   Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version: Data-scp 2.1.2", "OK")
 
 End
 
