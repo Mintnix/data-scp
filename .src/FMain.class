@@ -219,8 +219,8 @@ End
 
 Public Sub Menu4_Click()
 
-   'Hilfe Button
-   Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version: Data-scp 2.1.2", "OK")
+   '' Über... Button Versionsanzeige
+   Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version: Data-scp 2.1.3", "OK")
 
 End
 
