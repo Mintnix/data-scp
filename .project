@@ -1,8 +1,8 @@
 # Gambas Project File 3.0
 Title=Data-SCP
-Startup=FMain
+Startup=Trayicontrick
 Icon=data-scp.png
-Version=2.1.2
+Version=2.1.3
 Component=gb.image
 Component=gb.gui
 Component=gb.form
@@ -22,10 +22,10 @@ Vendor=Mintnix
 Address=pcspezialist@arcor.de
 Url=openyourlinux.blogspot.de
 License=General Public License
-PackageName=data-scp-2.1.2
+PackageName=data-scp-2.1.3
 RuntimeVersion="3.12"
 Packager=1
-Systems=ubuntu
+Systems=debian
 Menus=debian:"Applications/Network/File Transfer"
 Categories=debian:"FileTransfer;Network"
 Groups=debian:"web"

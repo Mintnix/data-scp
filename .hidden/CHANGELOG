@@ -1,3 +1,9 @@
+* Tue Jun 09 2020 Mintnix <pcspezialist@arcor.de> 2.1.3
+-  + kleinere Fehlerkorrektur Xfce Senden/Empfangen über Trayicon
+-  + Möglichkeit das Programm minimiert zu starten, dazu das Menü angepasst, zusätzliche Zeile wird in der Konfigurationsdatei gespeichert
+-  - einige Kommentare und "blinde" Funktionen gelöscht
+-  + Version auf 2.1.3 angehoben
+
 * Mon Jun 08 2020 Mintnix <pcspezialist@arcor.de> 2.1.2
 -  + Fehlerkorrektur für die "eigenen Einstellungen" (globale Variable)
 
