@@ -2,21 +2,16 @@
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ''Variablen deklarieren, hier???'''''''''''''''''''''''
-Public sDateimanager As String
-Public sServerIP As String
-Public sBenutzer As String
-Public sTerminal As String
+Public sDateimanager As String      'Zeile 1
+Public sServerIP As String          'Zeile 2
+Public sBenutzer As String          'Zeile 3
+Public sTerminal As String          'Zeile 4
 Static Public sManager As String
 
 'globale Variablen sind Static - mit Fmain. aufrufen
-Static Public sGlobal1 As String
-Static Public sGlobal2 As String
-'Static Public sTray As String = "minimiert"
-
-
-
-
-
+Static Public sGlobal1 As String    'Zeile 5    -  eigener Dateimanager
+Static Public sGlobal2 As String    'globale Variable für eigenes Terminal (speichert in Zeile 4)
+Static Public sGlobal3 As String    'Zeile 6
 
 
 
@@ -80,29 +75,51 @@ hFile = Open "~/.datascp.txt" For Read
    sBenutzer = sLine3
    sTerminal = sLine4
    sGlobal1 = sLine5
-   'sTray = sLine6
+   sGlobal3 = sLine6
    
    
    'Menübefehle nicht alle anzeigen!
    Menu8.Hide
    Menu9.Hide
+   Menu10.Hide
+   
    
    'TEST
- 
-   
-   
+  
+
+End
 
 
+''Check nach erstem Programmaufruf mit ggf. Minimierung der Anwendung als Trayicon in die Leiste
+' funktioniert über den Trick des Programmaufrufes über ein andres Modul als Startklasse - Dank an Koko
+Public Sub FirstInit()
+   
+    If sGlobal3 = "minimiert" Then 
+         Menu8.Show
+         Menu9.Show
+         Menu10.Show    
+         Menu10.Checked = True
+         'If FMain.sGlobal3 = "minimiert" Then Menu10.Checked = True 
+      
+         TrayIcon1.Show 
+         Menu7.Hide
+         Me.Visible = False
+        
+    Endif
+   
 End
 
 
 
 
+
+
+
+
+
 Public Sub Button2_Click()
-'Daten zum Server senden →
-   'sServerIP = TextBox1.Text
-   'sBenutzer = TextBox2.Text
-   'Message("scp -r ~/Schreibtisch/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/DataSCP", "OK")
+''Daten zum Server senden →
+   
    If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Else Shell sTerminal & " -- scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
    
    'Shell "ssh-askpass scp -r ~/Schreibtisch/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/Schreibtisch/" Wait
@@ -110,7 +127,7 @@ Public Sub Button2_Click()
 End
 
 Public Sub Button1_Click()
-' Daten vom Server abholen ←
+'' Daten vom Server abholen ←
                
    ' Den Uploadordner öffnen
    If sDateimanager = "Linux Mint 19 - Xfce" Then sManager = "thunar"
@@ -147,7 +164,7 @@ End
 Public Sub Button8_Click()
 
 '' Den Uploadordner öffnen
-'If ComboBox1.Text = "Linux auswählen" Then sDateimanager = ""
+
 If sDateimanager = "Linux Mint 19 - Xfce" Then sManager = "thunar"
 If sDateimanager = "Linux Mint 19 - Mate" Then sManager = "caja"
 If sDateimanager = "Linux Mint 19 - Cinnamon" Then sManager = "nemo" 
@@ -155,7 +172,7 @@ If sDateimanager = "Ubuntu 18.04" Then sManager = "nautilus"
 If sDateimanager = "Kubuntu 18.04" Then sManager = "dolphin"
 If sDateimanager = "eigene Einstellung" Then sManager = sGlobal1
 
-'Message(sDateimanager, sManager)
+
 
   Shell sManager & " -- ~/DataSCP"
  
@@ -202,8 +219,8 @@ End
 
 Public Sub Menu4_Click()
 
-   'Hilfe Button
-   Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version: Data-scp 2.1.2", "OK")
+   '' Über... Button Versionsanzeige
+   Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version: Data-scp 2.1.3", "OK")
 
 End
 
@@ -226,7 +243,8 @@ End
 
 Public Sub TrayIcon1_Click()
 
-   ' Den Uploadordner öffnen
+   '' Den Uploadordner öffnen
+   
    If sDateimanager = "Linux Mint 19 - Xfce" Then sManager = "thunar"
    If sDateimanager = "Linux Mint 19 - Mate" Then sManager = "caja"
    If sDateimanager = "Linux Mint 19 - Cinnamon" Then sManager = "nemo" 
@@ -250,10 +268,13 @@ Public Sub Menu7_Click()
    
    Menu8.Show
    Menu9.Show
+   Menu10.Show
+   If FMain.sGlobal3 = "minimiert" Then Menu10.Checked = True 
       
    TrayIcon1.Show 
-   FMain.Hide 
+   'FMain.Hide 
    Menu7.Hide
+   Me.Visible = False
       
    
 
@@ -275,8 +296,10 @@ Public Sub Menu8_Click()
 
  '' Daten senden über Trayicon
  
-      If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
-      Shell sTerminal & " -- scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
+     If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Else Shell sTerminal & " -- scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
+     
+     ' If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
+     ' Shell sTerminal & " -- scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
 
 End
 
@@ -284,8 +307,26 @@ Public Sub Menu9_Click()
 
 '' Daten vom Server abrufen über Trayicon
       
-      If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait
-      Shell sTerminal & " -- scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait  
+      If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Else Shell sTerminal & " -- scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait
+      
+      'If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait
+      'Shell sTerminal & " -- scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait  
    
+
+End
+
+Public Sub Menu10_Click()
+
+   
+   If Menu10.Checked = False Then FMain.sGlobal3 = "maximiert" Else Fmain.sGlobal3 = "minimiert"
+       
+        
+      File.Save("~/.datascp.txt", sDateimanager & gb.NewLine & sServerIP & gb.NewLine & sBenutzer & gb.NewLine & sTerminal & gb.NewLine & FMain.sGlobal1 & gb.NewLine & FMain.sGlobal3)
+      
+   Catch
+   ' If Error Then Message("Fehler", "ok")
+   If Error Then Return
+   
+
 
 End

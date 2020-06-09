@@ -1,0 +1,11 @@
+' Gambas module file
+
+
+' Koko trick
+Public Sub Main()
+
+  FMain.Show()
+  FMain.FirstInit()
+  
+End
+

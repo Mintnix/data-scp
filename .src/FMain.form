@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(388.8889,11.3333,39,36)
+  MoveScaled(388.9,11.3,39,36)
   Background = &HDFFFFF&
   Resizable = False
   Border = False
@@ -27,6 +27,12 @@
     }
     { Menu7 Menu
       Text = ("Minimieren")
+    }
+    { Menu10 Menu
+      Text = ("Immer minimiert ") & "..."
+      Toggle = True
+    }
+    { Menu11 Menu
     }
     { Menu5 Menu
       Text = ("Beenden")
