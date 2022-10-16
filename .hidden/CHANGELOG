@@ -1,3 +1,29 @@
+* Sun Oct 16 2022 Mintnix <pcspezialist@arcor.de> 2.1.4
+- + an UHD-Auflösung angepasst, damit das Programm im Bereich rechts oben erscheint
+- + Fehlerkorrektur
+
+* Sun Oct 16 2022 Mintnix <pcspezialist@arcor.de> 2.1.4
+- + Einstellungsdialog angepasst
+
+* Sun Oct 16 2022 Mintnix <pcspezialist@arcor.de> 2.1.4
+- + Versionsanpassung
+
+* Sun Oct 16 2022 Mintnix <pcspezialist@arcor.de> 2.1.4
+- + Paketfehler Abhängigkeit behoben
+
+* Sun Oct 16 2022 Mintnix <pcspezialist@arcor.de> 2.1.4
+- + Überarbeitung für Linux Mint Version 21
+- + Version auf 2.1.4 angehoben
+- + Menü überarbeitet
+- + kleinere Fehlerkorrekturen
+- - einige auskommentierte Zeilen entfernt
+- - Code noch nicht aufgeräumt
+
+* Thu Jun 11 2020 Mintnix <pcspezialist@arcor.de> 2.1.3
+
+* Tue Jun 09 2020 Mintnix <pcspezialist@arcor.de> 2.1.3
+-  + Versionskorrektur
+
 * Tue Jun 09 2020 Mintnix <pcspezialist@arcor.de> 2.1.3
 -  + kleinere Fehlerkorrektur Xfce Senden/Empfangen über Trayicon
 -  + Möglichkeit das Programm minimiert zu starten, dazu das Menü angepasst, zusätzliche Zeile wird in der Konfigurationsdatei gespeichert
