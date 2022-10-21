@@ -4,8 +4,12 @@
 ' Koko trick
 Public Sub Main()
 
-  FMain.Show()
+  'FMain.Width = 308
+  'FMain.Height = 252
+  FMain.Show() 
+  Wait 0.1 
   FMain.FirstInit()
+  
   
 End
 
