@@ -55,8 +55,6 @@ End
 
 
 
-
-
 Public Sub Button5_Click()
    ' den SSH Server installieren
    If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x apt install openssh-server" Else Shell sTerminal & " -- apt install openssh-server" Wait
@@ -68,8 +66,9 @@ Public Sub Button7_Click()
     If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x apt remove openssh-server" Else Shell sTerminal & " -- apt remove openssh-server" Wait 
     ' Shell sTerminal & " -- apt remove openssh-server" Wait
     
-
 End
+
+
 
 Public Sub Button9_Click()
 'die eingegeben Daten speichern  / eine einfache Routine ,die funktioniert !!!
@@ -99,6 +98,7 @@ If ComboBox1.Text = "eigene Einstellung" Then sTerminal = FMain.sGlobal2
 End
 
 
+
 Public Sub Button3_Click()
 
    Message("Bitte das Programm neu starten, damit die Einstellungen wirksam werden.")
@@ -112,8 +112,6 @@ End
 
 
 
-
-
 Public Sub ComboBox1_DblClick()
 
     If ComboBox1.Text = "eigene Einstellung" Then eigeneEinstellung.Show
@@ -122,7 +120,7 @@ End
 
 Public Sub Button1_Click()
 
-   ' Die SSH Serverliste öffnen
+   ' Den Ordner der SSH Serverliste öffnen, um auf die Datei known_hosts zugreifen zu können
    If sDateimanager = "Linux Mint 21 - Xfce" Then FMain.sManager = "thunar"
    If sDateimanager = "Linux Mint 21 - Mate" Then FMain.sManager = "caja"
    If sDateimanager = "Linux Mint 21 - Cinnamon" Then FMain.sManager = "nemo" 
@@ -131,12 +129,6 @@ Public Sub Button1_Click()
    If sDateimanager = "eigene Einstellung" Then FMain.sManager = FMain.sGlobal1
    
 
-   Shell FMain.sManager & " -- ~/.ssh/known_hosts"
-
-End
-
-Public Sub TextBox1_KeyPress()
-
-   
+   Shell FMain.sManager & " -- ~/.ssh/"
 
 End

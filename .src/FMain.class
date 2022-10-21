@@ -6,12 +6,13 @@ Public sDateimanager As String      'Zeile 1
 Public sServerIP As String          'Zeile 2
 Public sBenutzer As String          'Zeile 3
 Public sTerminal As String          'Zeile 4
-Static Public sManager As String
+
 
 'globale Variablen sind Static - mit Fmain. aufrufen
+Static Public sManager As String    'globale Dateimanager Variable
 Static Public sGlobal1 As String    'Zeile 5    -  eigener Dateimanager
 Static Public sGlobal2 As String    'globale Variable für eigenes Terminal (speichert in Zeile 4)
-Static Public sGlobal3 As String    'Zeile 6
+Static Public sGlobal3 As String    'Zeile 6    -  minimiert ?
 
 
 
@@ -100,17 +101,14 @@ Public Sub FirstInit()
          'Menu9.Show
          Menu7.Enabled = False
          'Menu10.Hide
-         If FMain.sGlobal3 = "minimiert" Then Menu10.Checked = True          
+         'If FMain.sGlobal3 = "minimiert" Then Menu10.Checked = True          
+         Menu10.Checked = True
          Menu10.Show    
-         TrayIcon1.Show
+         'Me.Width = 378
+         'Me.Height = 333
          Me.Visible = False
-         
+         TrayIcon1.Show
       
-         
-             
-         
-         
-        
     Endif
    
 End
@@ -226,7 +224,7 @@ End
 Public Sub Menu4_Click()
 
    '' Über... Button Versionsanzeige
-   Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version: Data-scp 2.1.4", "OK")
+   Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version: Data-scp 2.1.5", "OK")
 
 End
 
@@ -289,17 +287,15 @@ End
 Public Sub TrayIcon1_MiddleClick()
 
    'Programm wieder anzeigen und Menü anpassen
-   'Menu8.Hide
-   'Menu9.Hide
-   'Menu7.Show
-   'Menu10.Show
-   If FMain.sGlobal3 = "minimiert" Then Menu10.Checked = True
-   Menu7.Enabled = True
-   TrayIcon1.Hide
-   Fmain.Width = 396
-   Fmain.Height = 342
-   Me.Visible = True
    
+    If FMain.sGlobal3 = "minimiert" Then Menu10.Checked = True
+    Menu7.Enabled = True
+   'Me.Width = 308
+   'Me.Height = 252
+  
+    TrayIcon1.Hide
+    Me.Visible = True
+   'FMain.FirstInit()
    
    
    

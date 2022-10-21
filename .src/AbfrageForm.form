@@ -62,7 +62,7 @@
   { Button1 Button
     MoveScaled(53,15,4,4)
     Foreground = Color.DarkYellow
-    ToolTip = ("Öffnet sie Datei known_hosts, \nwelche die Serverliste enthält.")
+    ToolTip = ("Zeigt den Ordner mit der Datei known_hosts, \nwelche die Serverliste enthält.")
     Text = ("?!")
   }
 }

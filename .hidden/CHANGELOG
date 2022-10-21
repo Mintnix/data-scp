@@ -1,3 +1,13 @@
+* Fri Oct 21 2022 Mintnix <pcspezialist@arcor.de> 2.1.5
+- + Versionsanhebung
+
+* Fri Oct 21 2022 Mintnix <pcspezialist@arcor.de> 2.1.5
+- + Initialisierungsfehler der FMain.form Darstellung bei zuvor minimiertem Programmstart behoben, die Skalierung der Form hängt maßgeblich von der System- Schriftgröße ab
+
+* Fri Oct 21 2022 Mintnix <pcspezialist@arcor.de> 2.1.4
+- + Versuch die Größe des Fensters immer gleich aussehen zu lassen.
+- + Fehler im Button zur Datei known_hosts behoben
+
 * Sun Oct 16 2022 Mintnix <pcspezialist@arcor.de> 2.1.4
 - + Fehlerbehebung im Einstellungsdialog (Versionskorrektur)
 
