@@ -1,9 +1,12 @@
 ' Gambas class file
 
+Public sDistribution As String
 Public sDateimanager As String
 Public sServerIP As String
 Public sBenutzer As String
 Public sTerminal As String
+Public sPort As String
+
 
 
 
@@ -14,7 +17,7 @@ Dim sLine As String     ' Dateimanager
 Dim sLine2 As String    ' ServerIP
 Dim sLine3 As String    ' Benutzername
 Dim sLine4 As String    ' Terminal
-Dim sLine5 As String    ' individuelle Einstellung
+Dim sLine5 As String    ' SSH Port
 
 hFile = Open "~/.datascp.txt" For Read
 
@@ -23,31 +26,44 @@ hFile = Open "~/.datascp.txt" For Read
    Line Input #hFile, sLine3
    Line Input #hFile, sLine4
    Line Input #hFile, sLine5
-   '   Print sLine, sLine2, sLine3
+      Print sLine, sLine2, sLine3, sLine4, sLine5
    
-   ComboBox1.Text = sLine
-   TextBox1.Text = sLine2
-   TextBox2.Text = sLine3
    sDateimanager = sLine
    sServerIP = sLine2
    sBenutzer = sLine3
    sTerminal = sLine4
-   FMain.sGlobal1 = sLine5
-   FMain.sGlobal2 = sLine4
+   sPort = sLine5
+  
+   TextBox1.Text = sServerIP
+   TextBox2.Text = sBenutzer
+   TextBox3.Text = sPort
+   
+  
 
 ' Abfrage falls sLine leer sein sollte
-If sLine = "" Then ComboBox1.Text = "Linux auswählen"
+If sDateimanager = "" Then ComboBox1.Text = "Linux auswählen"
+If sLine > "" Then ComboBox1.Text = "eigene Einstellung"
+If sLine = "nemo" Then ComboBox1.Text = "Linux Mint - Cinnamon"
+If sLine = "thunar" Then ComboBox1.Text = "Linux Mint - Xfce"
+If sLine = "caja" Then ComboBox1.Text = "Linux Mint - Mate" 
+If sLine = "konsole" Then ComboBox1.Text = "Kubuntu"
+If sLine = "nautilus" Then ComboBox1.Text = "Ubuntu"
+
+
 If ComboBox1.Text = "Linux auswählen" Then TextBox1.Text = "Server IP-Adresse"
 If ComboBox1.Text = "Linux auswählen" Then TextBox2.Text = "Benutzername auf dem Server"
-
+If ComboBox1.Text = "Linux auswählen" Then TextBox3.Text = "SSH Port"
+If ComboBox1.Text = "eigene Einstellung" Then FMain.sGlobal2 = sTerminal
+If ComboBox1.Text = "eigene Einstellung" Then FMain.sGlobal1 = sDateimanager
 
 ' Hier wird das richtige Terminal für die entsprechende Ubgebung gewählt
-If ComboBox1.Text = "Linux Mint 21 - Cinnamon" Then sTerminal = "gnome-terminal" 
-If ComboBox1.Text = "Linux Mint 21 - Xfce" Then sTerminal = "xfce4-terminal"
-If ComboBox1.Text = "Linux Mint 21 - Mate" Then sTerminal = "mate-terminal" 
-If ComboBox1.Text = "Kubuntu 22.04" Then sTerminal = "konsole"
-If ComboBox1.Text = "Ubuntu 22.04" Then sTerminal = "gnome-terminal"
-If ComboBox1.Text = "eigene Einstellung" Then sTerminal = FMain.sGlobal2
+If ComboBox1.Text = "Linux Mint - Cinnamon" Then sTerminal = "gnome-terminal"
+If ComboBox1.Text = "Linux Mint - Xfce" Then sTerminal = "xfce4-terminal"
+If ComboBox1.Text = "Linux Mint - Mate" Then sTerminal = "mate-terminal" 
+If ComboBox1.Text = "Kubuntu" Then sTerminal = "konsole"
+If ComboBox1.Text = "Ubuntu" Then sTerminal = "gnome-terminal"
+
+
 
 If Exist("~/DataSCP") = True Then Label1.Text = "Arbeitsordner existiert schon."
 
@@ -71,28 +87,40 @@ End
 
 
 Public Sub Button9_Click()
-'die eingegeben Daten speichern  / eine einfache Routine ,die funktioniert !!!
+''die eingegeben Daten speichern  / eine einfache Routine ,die funktioniert !!!
 
    If Exist("~/DataSCP") = False Then Mkdir "~/DataSCP"
    
    
    ' Hier wird das richtige Terminal für die entsprechende Ubgebung gewählt
-If ComboBox1.Text = "Linux Mint 19 - Cinnamon" Then sTerminal = "gnome-terminal" 
-If ComboBox1.Text = "Linux Mint 19 - Xfce" Then sTerminal = "xfce4-terminal"
-If ComboBox1.Text = "Linux Mint 19 - Mate" Then sTerminal = "mate-terminal" 
-If ComboBox1.Text = "Kubuntu 18.04" Then sTerminal = "konsole"
-If ComboBox1.Text = "Ubuntu 18.04" Then sTerminal = "gnome-terminal"
+If ComboBox1.Text = "Linux Mint - Cinnamon" Then sTerminal = "gnome-terminal"
+If ComboBox1.Text = "Linux Mint - Cinnamon" Then sDateimanager = "nemo"
+If ComboBox1.Text = "Linux Mint - Xfce" Then sTerminal = "xfce4-terminal"
+If ComboBox1.Text = "Linux Mint - Xfce" Then sDateimanager = "thunar"
+If ComboBox1.Text = "Linux Mint - Mate" Then sTerminal = "mate-terminal" 
+If ComboBox1.Text = "Linux Mint - Mate" Then sDateimanager = "caja" 
+If ComboBox1.Text = "Kubuntu" Then sTerminal = "konsole"
+If ComboBox1.Text = "Kubuntu" Then sDateimanager = "dolphin"
+If ComboBox1.Text = "Ubuntu" Then sTerminal = "gnome-terminal"
+If ComboBox1.Text = "Ubuntu" Then sDateimanager = "nautilus"
 If ComboBox1.Text = "eigene Einstellung" Then sTerminal = FMain.sGlobal2
+If ComboBox1.Text = "eigene Einstellung" Then sDateimanager = FMain.sGlobal1
 
-   sDateimanager = ComboBox1.Text
+
+
+   'sDateimanager = ComboBox1.Text
    sServerIP = TextBox1.Text
    sBenutzer = TextBox2.Text
-   'FMain.sGlobal1 = FMain.sGlobal2
+   sPort = TextBox3.Text
+   If sPort = "SSH Port" Then sPort = "22" 
    
+   
+   'Print sTerminal, sDateimanager, sPort  
+  
       
-   File.Save("~/.datascp.txt", sDateimanager & gb.NewLine & sServerIP & gb.NewLine & sBenutzer & gb.NewLine & sTerminal & gb.NewLine & FMain.sGlobal1)
+   File.Save("~/.datascp.txt", sDateimanager & gb.NewLine & sServerIP & gb.NewLine & sBenutzer & gb.NewLine & sTerminal & gb.NewLine & sPort & gb.NewLine)
    Catch
-' If Error Then Message("Fehler", "ok")
+   'If Error Then Message("Fehler", "ok")
    If Error Then Return
          
 End
@@ -100,7 +128,7 @@ End
 
 
 Public Sub Button3_Click()
-
+   'Fenster schließen
    Message("Bitte das Programm neu starten, damit die Einstellungen wirksam werden.")
    eigeneEinstellung.Close
    AbfrageForm.Close
@@ -111,24 +139,15 @@ End
 
 
 
-
 Public Sub ComboBox1_DblClick()
-
+   'eigene Einstellungsdialog öffnen
     If ComboBox1.Text = "eigene Einstellung" Then eigeneEinstellung.Show
 
 End
 
 Public Sub Button1_Click()
-
-   ' Den Ordner der SSH Serverliste öffnen, um auf die Datei known_hosts zugreifen zu können
-   If sDateimanager = "Linux Mint 21 - Xfce" Then FMain.sManager = "thunar"
-   If sDateimanager = "Linux Mint 21 - Mate" Then FMain.sManager = "caja"
-   If sDateimanager = "Linux Mint 21 - Cinnamon" Then FMain.sManager = "nemo" 
-   If sDateimanager = "Ubuntu 22.04" Then FMain.sManager = "nautilus"
-   If sDateimanager = "Kubuntu 22.04" Then FMain.sManager = "dolphin"
-   If sDateimanager = "eigene Einstellung" Then FMain.sManager = FMain.sGlobal1
-   
-
-   Shell FMain.sManager & " -- ~/.ssh/"
+   'Den Ordner der SSH Serverliste öffnen, um auf die Datei known_hosts zugreifen zu können
+   Shell sDateimanager & " -- ~/.ssh/"
 
 End
+

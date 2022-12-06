@@ -1,3 +1,19 @@
+* Tue Dec 06 2022 Mintnix <pcspezialist@arcor.de> 2.1.6
+- + Abhängigkeiten zur Installation hinzugefügt
+
+* Sun Dec 04 2022 Mintnix <pcspezialist@arcor.de> 2.1.6
+- + Fehler
+
+* Sun Dec 04 2022 Mintnix <pcspezialist@arcor.de> 2.1.6
+- + Abhängigkeiten versucht aufzulösen
+
+* Sat Dec 03 2022 Mintnix <pcspezialist@arcor.de> 2.1.6
+- + Auswahl des SSH Port hinzugefügt
+- + Funktion nicht nur im lokalen Netzwerk, sondern weltweit, dank SSH Porteinstellung, möglich
+- - Code etwas aufgeräumt
+- + Versionsanhebung
+- + Hilfetext erweitert
+
 * Fri Oct 21 2022 Mintnix <pcspezialist@arcor.de> 2.1.5
 - + Versionsanhebung
 

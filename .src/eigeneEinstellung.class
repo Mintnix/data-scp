@@ -1,13 +1,11 @@
 ' Gambas class file
 
-  
-
 
 
 Public Sub Form_Open()
    
-   'TextBox1.Text = FMain.sGlobal1
-   'TextBox2.Text = FMain.sGlobal2
+   TextBox1.Text = FMain.sGlobal1
+   TextBox2.Text = FMain.sGlobal2
 
 End
 
@@ -15,9 +13,7 @@ Public Sub Button1_Click()
 
    FMain.sGlobal1 = TextBox1.Text
    FMain.sGlobal2 = TextBox2.Text
-      
-   'Message("GlobaleVariablen = " & FMain.sGlobal1 & " " & FMain.sGlobal2, "OK")
-   
+
    eigeneEinstellung.Close
 
 End
