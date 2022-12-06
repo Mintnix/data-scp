@@ -8,6 +8,7 @@ gb.image
 gb.gui
 gb.form
 gb.dbus
+gb.desktop.x11
 gb.gui.trayicon
 gb.net
 gb.vb
