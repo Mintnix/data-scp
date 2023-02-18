@@ -1,3 +1,17 @@
+* Sat Feb 18 2023 Mintnix <pcspezialist@arcor.de> 2.1.7
+- + Änderung Abhängigkeiten für Mint 21, ältere Versionen nicht mehr unterstützt
+- + Gambas3 ab Version 16 verlangt
+- + zusätzliche fehlende Abhängigkeiten über Programmaufruf im Terminal einsehbar und ggf. auflösbar
+
+* Wed Feb 15 2023 Mintnix <pcspezialist@arcor.de> 2.1.7
+- -Abhängigkeiten entfernt, da in älteren Mint-Versionen diese teilweise nicht auflösbar sind
+
+* Sun Feb 12 2023 Mintnix <pcspezialist@arcor.de> 2.1.7
+- Versionsanpassung auf 2.1.7
+
+* Sun Feb 12 2023 Mintnix <pcspezialist@arcor.de> 2.1.7
+- Versuch Kompatibilität zu älteren Mint Versionen einzubauen
+
 * Tue Dec 06 2022 Mintnix <pcspezialist@arcor.de> 2.1.6
 - + Abhängigkeiten zur Installation hinzugefügt
 
