@@ -5,7 +5,7 @@ Data-SCP
 2.1.7
 
 gb.image
-gb.gui
+gb.gtk3
 gb.form
 gb.dbus
 gb.desktop.x11
