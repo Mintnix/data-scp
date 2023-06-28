@@ -1,8 +1,7 @@
 ' Gambas class file
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-Public sVersion As String = "2.1.7"
-
+Public Version As String = Application.Version     'Version aus App holen
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 ''globale Variablen sind Static - mit Fmain. aufrufen
@@ -19,6 +18,7 @@ Public sPort As String              'Zeile 5
 Public sMinimiert As String           'Zeile 6    -  minimiert ?
 Public sSenden As String
 Public sHolen As String
+
 
 
 
@@ -193,7 +193,7 @@ End
 
 Public Sub Menu4_Click()
    '' Über... Button Versionsanzeige
-   Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version  " & sVersion, "OK")
+   Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version  " & Version, "OK")
 
 End
 
