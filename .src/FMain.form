@@ -14,6 +14,25 @@
     { Menu9 Menu
       Text = ("Daten abrufen")
     }
+    { mServerliste Menu
+      Text = ("Serverauswahl")
+      { mServer1 Menu
+        Text = ("Server 1")
+        Radio = True
+      }
+      { mServer2 Menu
+        Text = ("Server 2")
+        Radio = True
+      }
+      { mServer3 Menu
+        Text = ("Server 3")
+        Radio = True
+      }
+      { mServer4 Menu
+        Text = ("Server 4")
+        Radio = True
+      }
+    }
     { Menu3 Menu
       Text = ("Einstellungen")
     }

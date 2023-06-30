@@ -10,6 +10,5 @@ Public Sub Main()
   Wait 0.1 
   FMain.FirstInit()
   
-  
 End
 
