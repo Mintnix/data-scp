@@ -1,79 +1,171 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,37,56)
+  MoveScaled(0,0,128,55)
   Background = &HDFFFFF&
-  ToolTip = ("Client oder Server oder beides? \n\nDamit das Programm richtig funktioniert gibt es mindestens einen Server in Ihrem Netzwerk. Von diesem können Clienten Daten herunterladen oder hochladen. Will man vom jeweils anderen Rechner die selbige Funktion, so ist der openssh Server zu installieren, falls nicht schon vorinstalliert.\nMerke: Der Rechner an dem ich gerade sitze ist der Client. Der entfernte Rechner ist der Server.")
+  ToolTip = ("Data-SCP Einstellungsdialog")
   Resizable = False
   Border = False
-  { Panel1 Panel
-    MoveScaled(1,7,35,26)
+  { Frame2 Frame
+    MoveScaled(2,33,87,20)
+    ToolTip = ("System abhängige Einstellungen.")
+    Text = ("Systemeinstellung")
+    { ComboBox1 ComboBox
+      MoveScaled(2,4,35,4)
+      ToolTip = ("Linux Distribution vorher richtig einstellen.\nWelches Linux wird hier gerade benutzt?\n\nFür individuelle Einstellungen wählen Sie \"eigene Einstellung\" aus der Liste aus.\nAnschließend klicken Sie mit der rechten \nMaustaste doppelt auf \"eigene Einstellung\". ")
+      ReadOnly = True
+      List = [("Linux auswählen"), ("Linux Mint - Cinnamon"), ("Linux Mint - Mate"), ("Linux Mint - Xfce"), ("Ubuntu"), ("Kubuntu"), ("eigene Einstellung")]
+      Border = False
+    }
+    { Button5 Button
+      MoveScaled(2,9,28,4)
+      Foreground = Color.DarkYellow
+      ToolTip = ("Installiert das Paket openssh-server auf dem Rechner,\nwenn er als Server verwendet werden soll. Dieser\nist dann von entfernten Clienten erreichbar. \nDer entsprechende Dienst wird automatisch bei \nSystemstart geladen. Will man dies Rückgangig machen,\nso kann man in den Verwaltungstools der entsprechenden\nOberflächen den Dienst vom Autostart ausschließen, oder\nman deinstalliert das openssh-server Paket wieder vom\nRechner selbst.")
+      Text = ("SSH-Server")
+    }
+    { Button7 Button
+      MoveScaled(32,9,5,4)
+      Foreground = Color.DarkRed
+      ToolTip = ("Entfernt den SSH Server \nwieder vom System.")
+      Text = ("X")
+    }
+    { Button1 Button
+      MoveScaled(2,14,35,4)
+      Foreground = Color.DarkYellow
+      ToolTip = ("Zeigt den Ordner mit der Datei known_hosts, \nwelche die Server enthält.")
+      Text = ("?!")
+    }
+    { Label1 Label
+      MoveScaled(40,3,45,16)
+      Font = Font["+1"]
+      ToolTip = ("Bei geänderten Einstellungen\ndas Speichern nicht vergessen.")
+      Alignment = Align.Center
+      Text = ("Der Ordner für den \nDatenaustausch wird \nautomatisch beim Speichern \nim Home-Verzeichnis erstellt.")
+    }
   }
-  { Label1 Label
-    MoveScaled(2,34,33,10)
-    ToolTip = ("Bei geänderten Einstellungen\ndas Speichern nicht vergessen.")
-    Alignment = Align.Center
-    Text = ("Der Ordner für den \nDatenaustausch wird \nautomatisch beim Speichern \nim Home-Verzeichnis erstellt.")
-  }
-  { ComboBox1 ComboBox
-    MoveScaled(2,8,33,4)
-    ToolTip = ("Linux Distribution vorher richtig einstellen.\nWelches Linux wird hier gerade benutzt?\n\nFür individuelle Einstellungen wählen Sie \"eigene Einstellung\" aus der Liste aus.\nAnschließend klicken Sie mit der rechten \nMaustaste doppelt auf \"eigene Einstellung\". ")
-    ReadOnly = True
-    List = [("Linux auswählen"), ("Linux Mint - Cinnamon"), ("Linux Mint - Mate"), ("Linux Mint - Xfce"), ("Ubuntu"), ("Kubuntu"), ("eigene Einstellung")]
-    Border = False
-  }
-  { TextBox1 TextBox
-    MoveScaled(2,13,33,4)
-    ToolTip = ("IP des entfernten Rechner eingeben.")
-    Text = ("Server IP-Adresse ?")
-    Alignment = Align.Center
-  }
-  { TextBox2 TextBox
-    MoveScaled(2,18,33,4)
-    ToolTip = ("Benutzername des entfernten Rechner eingeben.")
-    Text = ("Benutzername auf Server ?")
-    Alignment = Align.Center
-  }
-  { Button5 Button
-    MoveScaled(2,45,23,4)
-    Foreground = Color.DarkYellow
-    ToolTip = ("Installiert das Paket openssh-server auf dem Rechner,\nwenn er als Server verwendet werden soll. Dieser\nist dann von entfernten Clienten erreichbar. \nDer entsprechende Dienst wird automatisch bei \nSystemstart geladen. Will man dies Rückgangig machen,\nso kann man in den Verwaltungstools der entsprechenden\nOberflächen den Dienst vom Autostart ausschließen, oder\nman deinstalliert das openssh-server Paket wieder vom\nRechner selbst.")
-    Text = ("SSH-Server")
-  }
-  { Button7 Button
-    MoveScaled(31,45,4,4)
-    Foreground = Color.DarkRed
-    ToolTip = ("Entfernt den SSH Server \nwieder vom System.")
-    Text = ("X")
+  { Frame1 Frame
+    MoveScaled(2,6,124,25)
+    ToolTip = ("Hier können 4 Server hinterlegt werden, mit denen\nDaten ausgetauscht werden sollen. Die Servernamen\nerscheinen zur Auswahl im Menü von Data-SCP.")
+    Text = ("Severliste")
+    { TextBox1 TextBox
+      MoveScaled(2,4,33,4)
+      ToolTip = ("IP des entfernten Rechner eingeben.")
+      Text = ("Server IP-Adresse ?")
+      Alignment = Align.Center
+    }
+    { TextBox2 TextBox
+      MoveScaled(36,4,33,4)
+      ToolTip = ("Benutzername des entfernten Rechner eingeben.")
+      Text = ("Benutzername auf Server ?")
+      Alignment = Align.Center
+    }
+    { TextBox3 TextBox
+      MoveScaled(70,4,20,4)
+      ToolTip = ("SSH Port des Servers angeben.\n\nDer Standartport für SSH ist in der Regel 22.\nAus Sicherheitsgründen sollte man den SSH Port,\nfür aus dem Internet erreichbare Server, anpassen.\n ")
+      Text = ("SSH Port ?")
+      Alignment = Align.Center
+    }
+    { TextBox4 TextBox
+      MoveScaled(91,4,31,4)
+      ToolTip = ("Individueller Name, wie er im Menü \nangezeigt werden soll.")
+      Text = ("Server  Nr. 1")
+      Alignment = Align.Center
+    }
+    { TextBox7 TextBox
+      MoveScaled(2,9,33,4)
+      ToolTip = ("IP des entfernten Rechner eingeben.")
+      Text = ("Server IP-Adresse ?")
+      Alignment = Align.Center
+    }
+    { TextBox6 TextBox
+      MoveScaled(36,9,33,4)
+      ToolTip = ("Benutzername des entfernten Rechner eingeben.")
+      Text = ("Benutzername auf Server ?")
+      Alignment = Align.Center
+    }
+    { TextBox5 TextBox
+      MoveScaled(70,9,20,4)
+      ToolTip = ("SSH Port des Servers angeben.\n\nDer Standartport für SSH ist in der Regel 22.\nAus Sicherheitsgründen sollte man den SSH Port,\nfür aus dem Internet erreichbare Server, anpassen.\n ")
+      Text = ("SSH Port ?")
+      Alignment = Align.Center
+    }
+    { TextBox8 TextBox
+      MoveScaled(91,9,31,4)
+      ToolTip = ("Individueller Name, wie er im Menü \nangezeigt werden soll.")
+      Text = ("Server  Nr. 2")
+      Alignment = Align.Center
+    }
+    { TextBox11 TextBox
+      MoveScaled(2,14,33,4)
+      ToolTip = ("IP des entfernten Rechner eingeben.")
+      Text = ("Server IP-Adresse ?")
+      Alignment = Align.Center
+    }
+    { TextBox10 TextBox
+      MoveScaled(36,14,33,4)
+      ToolTip = ("Benutzername des entfernten Rechner eingeben.")
+      Text = ("Benutzername auf Server ?")
+      Alignment = Align.Center
+    }
+    { TextBox9 TextBox
+      MoveScaled(70,14,20,4)
+      ToolTip = ("SSH Port des Servers angeben.\n\nDer Standartport für SSH ist in der Regel 22.\nAus Sicherheitsgründen sollte man den SSH Port,\nfür aus dem Internet erreichbare Server, anpassen.\n ")
+      Text = ("SSH Port ?")
+      Alignment = Align.Center
+    }
+    { TextBox12 TextBox
+      MoveScaled(91,14,31,4)
+      ToolTip = ("Individueller Name, wie er im Menü \nangezeigt werden soll.")
+      Text = ("Server  Nr. 3")
+      Alignment = Align.Center
+    }
+    { TextBox15 TextBox
+      MoveScaled(2,19,33,4)
+      ToolTip = ("IP des entfernten Rechner eingeben.")
+      Text = ("Server IP-Adresse ?")
+      Alignment = Align.Center
+    }
+    { TextBox14 TextBox
+      MoveScaled(36,19,33,4)
+      ToolTip = ("Benutzername des entfernten Rechner eingeben.")
+      Text = ("Benutzername auf Server ?")
+      Alignment = Align.Center
+    }
+    { TextBox13 TextBox
+      MoveScaled(70,19,20,4)
+      ToolTip = ("SSH Port des Servers angeben.\n\nDer Standartport für SSH ist in der Regel 22.\nAus Sicherheitsgründen sollte man den SSH Port,\nfür aus dem Internet erreichbare Server, anpassen.\n ")
+      Text = ("SSH Port ?")
+      Alignment = Align.Center
+    }
+    { TextBox16 TextBox
+      MoveScaled(91,19,31,4)
+      ToolTip = ("Individueller Name, wie er im Menü \nangezeigt werden soll.")
+      Text = ("Server  Nr. 4")
+      Alignment = Align.Center
+    }
   }
   { Button9 Button
-    MoveScaled(2,28,33,4)
+    MoveScaled(91,44,35,4)
     Font = Font["Bold"]
     Foreground = Color.Orange
-    ToolTip = ("Speichert die aktuellen Einstellungen.")
+    ToolTip = ("Speichert die individuelle Serverliste und\ndie Systemeinstellungen in einer Datei ab.")
     Text = Shortcut(("Speichern"), "e")
   }
   { Label2 Label
-    MoveScaled(2,2,18,4.2222)
+    MoveScaled(2,2,26,4)
     Font = Font["Bold,+1"]
     Foreground = Color.Blue
-    Text = ("Einstellungen")
+    Text = ("Einstellungsdialog")
   }
   { Button3 Button
-    MoveScaled(2,50,33,4)
-    ToolTip = ("Schließt die Einstellungen und beendet das Programm.")
+    MoveScaled(91,49,35,4)
+    ToolTip = ("Schließt die Einstellungen und beendet das Programm.\nBitte vorher die Einstellungen abspeichern!")
     Text = Shortcut(("Schließen"), "S")
   }
-  { Button1 Button
-    MoveScaled(26,45,4,4)
-    Foreground = Color.DarkYellow
-    ToolTip = ("Zeigt den Ordner mit der Datei known_hosts, \nwelche die Serverliste enthält.")
-    Text = ("?!")
-  }
-  { TextBox3 TextBox
-    MoveScaled(2,23,33,4)
-    ToolTip = ("SSH Port des Servers angeben.\n\nDer Standartport für SSH ist in der Regel 22.\nAus Sicherheitsgründen sollte man den SSH Port,\nfür aus dem Internet erreichbare Server, anpassen.\n ")
-    Text = ("SSH Port ?")
+  { PictureBox1 PictureBox
+    MoveScaled(103,33,11,10)
+    ToolTip = ("Client oder Server oder beides? \n\nDamit das Programm richtig funktioniert, gibt es mindestens einen Server in Ihrem Netzwerk. Von diesem können Clienten Daten herunterladen oder zu auch hochladen. Will man vom jeweils anderen Rechner die selbige Funktion, so ist der openssh Server zu installieren, falls nicht schon vorinstalliert.\nMerke: Der Rechner an dem ich gerade sitze ist der Client. Der entfernte Rechner ist der Server.")
+    Picture = Picture["icon:/64/info"]
     Alignment = Align.Center
   }
 }

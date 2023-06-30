@@ -1,96 +1,156 @@
 ' Gambas class file
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-Public sVersion As String = "2.1.7"
-
+Public Version As String = Application.Version     'Version aus App holen
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 ''globale Variablen sind Static - mit Fmain. aufrufen
 'Static Public sManager As String    'globale Dateimanager Variable
 Static Public sGlobal1 As String    'Zeile 1    -  individueller Dateimanager
-Static Public sGlobal2 As String    'Zeile 4    -  individuelles Terminal 
+Static Public sGlobal2 As String    'Zeile 2    -  individuelles Terminal 
 
 ''Variablen deklarieren, hier???'''''''''''''''''''''''
-Public sDateimanager As String      'Zeile 1
-Public sServerIP As String          'Zeile 2
-Public sBenutzer As String          'Zeile 3
-Public sTerminal As String          'Zeile 4 
-Public sPort As String              'Zeile 5
-Public sMinimiert As String           'Zeile 6    -  minimiert ?
+Public sDateimanager As String       'Zeile 1
+Public sTerminal As String           'Zeile 2
+
+Public sServerIP1 As String          'Zeile 3
+Public sBenutzer1 As String          'Zeile 4
+Public sPort1 As String              'Zeile 5
+Public sServerName1 As String        'Zeile 6
+Public sServerIP2 As String          'Zeile 7
+Public sBenutzer2 As String          'Zeile 8
+Public sPort2 As String              'Zeile 9
+Public sServerName2 As String        'Zeile 10
+Public sServerIP3 As String          'Zeile 11
+Public sBenutzer3 As String          'Zeile 12
+Public sPort3 As String              'Zeile 13
+Public sServerName3 As String        'Zeile 14
+Public sServerIP4 As String          'Zeile 15
+Public sBenutzer4 As String          'Zeile 16
+Public sPort4 As String              'Zeile 17
+Public sServerName4 As String        'Zeile 18
+
+Public sMinimiert As String          'Zeile 19    -  minimiert ?
+Public iAktiv As String              'Zeile 20    -  Server ausgewählt
+
+Public sServerIP As String
+Public sBenutzer As String
+Public sPort As String
+Public sServerName As String
 Public sSenden As String
 Public sHolen As String
 
 
-
-
-
+'' ---------------------------------------------Programmcode--------------------------------------------------
 Public Sub Form_Open()
-
 'Was soll beim Start passieren?
 '1. Prüfen ob das Arbeitsverzeichnis vorhanden ist, ggf anlegen
 '2. Speicherdatei vorhanden, ggf. anlegen
 '3. Daten aus der Speicherdatei laden und in die Anwendung füllen
-'
+
 Dim hFile As Stream
-Dim sLine As String     ' Dateimanager
-Dim sLine2 As String    ' ServerIP
-Dim sLine3 As String    ' Benutzername
-Dim sLine4 As String    ' Terminal
+Dim sLine1 As String    ' Dateimanager
+Dim sLine2 As String    ' Terminal
+Dim sLine3 As String    ' ServerIP
+Dim sLine4 As String    ' Benutzer
 Dim sLine5 As String    ' SSH Portnummer
-Dim sLine6 As String    ' Tray aktiviert?
-
-
-'ComboBox1.Text = sDateimanager
-'TextBox1.Text = sServerIP
-'TextBox2.Text = sBenutzer
+Dim sLine6 As String    ' Servername
+Dim sLine7 As String    ' ServerIP
+Dim sLine8 As String    ' Benutzer
+Dim sLine9 As String    ' SSH Portnummer
+Dim sLine10 As String    ' Servername
+Dim sLine11 As String    ' ServerIP
+Dim sLine12 As String    ' Benutzer
+Dim sLine13 As String    ' SSH Portnummer
+Dim sLine14 As String    ' Servername
+Dim sLine15 As String    ' ServerIP
+Dim sLine16 As String    ' Benutzer
+Dim sLine17 As String    ' SSH Portnummer
+Dim sLine18 As String    ' Servername
+Dim sLine19 As String    ' Tray aktiviert?
+Dim sLine20 As String   ' vorheriger ausgewählter Server
 
 
 If Exist("~/DataSCP") = False Then
    Message("Konfiguration existiert noch nicht .\nBitte den Einstellungsdialog öffnen und anpassen.", "OK") 
-
-   
 Endif
 
-
-''Konfigurationsdatei wird automatisch angelegt
+'Konfigurationsdatei wird automatisch angelegt
 If Exist("~/.datascp.txt") = False Then
    Shell "touch ~/.datascp.txt" Wait
 Endif
 
-'If Exist("~/Schreibtisch/DataSCP") = True Then Message("Der Uploadordner existiert bereits", "OK")
-
 'hier wird geladen und in Variablen gefüllt
 hFile = Open "~/.datascp.txt" For Read
 
-   Line Input #hFile, sLine
+   Line Input #hFile, sLine1
    Line Input #hFile, sLine2
    Line Input #hFile, sLine3
    Line Input #hFile, sLine4
    Line Input #hFile, sLine5
    Line Input #hFile, sLine6
-
-   Print sLine, sLine2, sLine3, sLine4, sLine5, sLine6
+   Line Input #hFile, sLine7
+   Line Input #hFile, sLine8
+   Line Input #hFile, sLine9
+   Line Input #hFile, sLine10
+   Line Input #hFile, sLine11
+   Line Input #hFile, sLine12
+   Line Input #hFile, sLine13
+   Line Input #hFile, sLine14
+   Line Input #hFile, sLine15
+   Line Input #hFile, sLine16
+   Line Input #hFile, sLine17
+   Line Input #hFile, sLine18
+   Line Input #hFile, sLine19
+   Line Input #hFile, sLine20
    
-   sDateimanager = sLine
-   sServerIP = sLine2
-   sBenutzer = sLine3
-   sTerminal = sLine4
-   sPort = sLine5
-   sMinimiert = sLine6
-      
+   sDateimanager = sLine1
+   sTerminal = sLine2
+   sServerIP1 = sLine3
+   sBenutzer1 = sLine4
+   sPort1 = sLine5
+   sServerName1 = sLine6
+   sServerIP2 = sLine7
+   sBenutzer2 = sLine8
+   sPort2 = sLine9
+   sServerName2 = sLine10
+   sServerIP3 = sLine11
+   sBenutzer3 = sLine12
+   sPort3 = sLine13
+   sServerName3 = sLine14
+   sServerIP4 = sLine15
+   sBenutzer4 = sLine16
+   sPort4 = sLine17
+   sServerName4 = sLine18
+   sMinimiert = sLine19
+   iAktiv = sLine20
    
-   'Menübefehle nicht alle anzeigen!
-    'Menu8.Hide
-    'Menu9.Hide
-    'Menu10.Hide
-
-   'SSH Portabfrage
-   If sLine5 = "" Then sPort = "22"
-   sSenden = " scp -P " & sPort & " -r ~/DataSCP "
-   sHolen = " scp -P " & sPort & " -r "
-   Print sSenden
-   Print sHolen
    
+   If iAktiv = 1 Then 
+   mServer1_Click() 
+   mServer1.Checked = True
+   Endif 
+   If iAktiv = 2 Then 
+   mServer2_Click()
+   mServer2.Checked = True
+   Endif 
+   If iAktiv = 3 Then
+   mServer3_Click()
+   mServer3.Checked = True
+   Endif 
+   If iAktiv = 4 Then 
+   mServer4_Click()
+   mServer4.Checked = True
+   Endif 
+   If iAktiv = "" Then Message("Es wurde noch kein Server ausgewählt,\noder es sind noch keine Server in den \nEinstellungen eingetragen.", "OK") 
+   'Print iAktiv
+   
+   'Menü mit den Namen der Server auffüllen - Gambas zeigt im Übrigen nur Menüeinträge an, die nicht "leer" sind.
+   mServer1.Text = sServerName1
+   mServer2.Text = sServerName2
+   mServer3.Text = sServerName3
+   mServer4.Text = sServerName4
+   Wait 
 
 End
 
@@ -103,6 +163,7 @@ Public Sub FirstInit()
          'Menu8.Show
          'Menu9.Show
          Menu7.Enabled = False
+         mServerliste.Enabled = False
          'Menu10.Hide
          'If FMain.sGlobal3 = "minimiert" Then Menu10.Checked = True          
          Menu10.Checked = True
@@ -116,7 +177,11 @@ Public Sub FirstInit()
    
 End
 
-
+Public Sub Speicherroutine()
+   
+  File.Save("~/.datascp.txt", sDateimanager & gb.NewLine & sTerminal & gb.NewLine & sServerIP1 & gb.NewLine & sBenutzer1 & gb.NewLine & sPort1 & gb.NewLine & sServerName1 & gb.NewLine & sServerIP2 & gb.NewLine & sBenutzer2 & gb.NewLine & sPort2 & gb.NewLine & sServerName2 & gb.NewLine & sServerIP3 & gb.NewLine & sBenutzer3 & gb.NewLine & sPort3 & gb.NewLine & sServerName3 & gb.NewLine & sServerIP4 & gb.NewLine & sBenutzer4 & gb.NewLine & sPort4 & gb.NewLine & sServerName4 & gb.NewLine & sMinimiert & gb.NewLine & iAktiv & gb.NewLine)
+   
+End
 
 
 Public Sub Button2_Click()
@@ -124,10 +189,11 @@ Public Sub Button2_Click()
    
    'bisheriger Befehl
    'If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Else Shell sTerminal & " -- scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
-   
+   Print sTerminal & " --" & sSenden & sBenutzer & "@" & sServerIP & ":~/"
    'neuer Befehl
    If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Else Shell sTerminal & " --" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Wait 
-   
+   Catch
+    If Error Then Message("Fehler", "ok")
            
 End
 
@@ -139,7 +205,8 @@ Public Sub Button1_Click()
    
    'neuer Befehl
    If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x" & sHolen & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Else Shell sTerminal & " --" & sHolen & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait
-     
+   Catch
+    If Error Then Message("Fehler", "ok") 
    
 End
 
@@ -177,6 +244,7 @@ End
 
 Public Sub Button3_Click()
    ''Programm schließen
+   Speicherroutine()
    Shell sDateimanager & " -q" Wait
    TrayIcons.DeleteAll
    Me.Close
@@ -193,7 +261,7 @@ End
 
 Public Sub Menu4_Click()
    '' Über... Button Versionsanzeige
-   Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version  " & sVersion, "OK")
+   Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version  " & Version, "OK")
 
 End
 
@@ -226,6 +294,7 @@ End
 Public Sub Menu7_Click()
    ''Programm ins Tray minimieren und Menü auffüllen
    Menu7.Enabled = False
+   mServerliste.Enabled = False
    If sMinimiert = "minimiert" Then Menu10.Checked = True
    TrayIcon1.Show
    Me.Visible = False
@@ -236,6 +305,7 @@ Public Sub TrayIcon1_MiddleClick()
    ''Programm wieder anzeigen und Menü anpassen
     If sMinimiert = "minimiert" Then Menu10.Checked = True
     Menu7.Enabled = True
+    mServerliste.Enabled = True
     TrayIcon1.Hide
     Me.Visible = True
    
@@ -259,9 +329,65 @@ End
 Public Sub Menu10_Click()
    'Menüpunkt immer minimiert 
    If Menu10.Checked = False Then sMinimiert = "maximiert" Else sMinimiert = "minimiert"
-       File.Save("~/.datascp.txt", sDateimanager & gb.NewLine & sServerIP & gb.NewLine & sBenutzer & gb.NewLine & sTerminal & gb.NewLine & sPort & gb.NewLine & sMinimiert)
+       'File.Save("~/.datascp.txt", sDateimanager & gb.NewLine & sServerIP & gb.NewLine & sBenutzer & gb.NewLine & sTerminal & gb.NewLine & sPort & gb.NewLine & sMinimiert)
+       Speicherroutine()
     Catch
-   ' If Error Then Message("Fehler", "ok")
-   If Error Then Return
+    If Error Then Message("Fehler", "ok")
+   'If Error Then Return
+
+End
+
+Public Sub mServer1_Click()
+
+   sServerIP = sServerIP1
+   Print sServerIP
+   sBenutzer = sBenutzer1 
+   Print sBenutzer
+   sPort = sPort1
+   If sPort = "" Then sPort = "22"
+   Print sPort
+   iAktiv = 1
+   sSenden = " scp -P " & sPort & " -r ~/DataSCP "
+   sHolen = " scp -P " & sPort & " -r "
+   Print sSenden & "        |       " & sHolen
+
+End
+
+Public Sub mServer2_Click()
+
+   sServerIP = sServerIP2
+   sBenutzer = sBenutzer2 
+   sPort = sPort2
+   If sPort = "" Then sPort = "22"
+   iAktiv = 2
+   sSenden = " scp -P " & sPort & " -r ~/DataSCP "
+   sHolen = " scp -P " & sPort & " -r "
+   Print sSenden & "        |       " & sHolen
+
+End
+
+Public Sub mServer3_Click()
+
+   sServerIP = sServerIP3
+   sBenutzer = sBenutzer3 
+   sPort = sPort3
+   If sPort = "" Then sPort = "22"
+   iAktiv = 3
+   sSenden = " scp -P " & sPort & " -r ~/DataSCP "
+   sHolen = " scp -P " & sPort & " -r "
+   Print sSenden & "        |       " & sHolen
+
+End
+
+Public Sub mServer4_Click()
+
+   sServerIP = sServerIP4
+   sBenutzer = sBenutzer4 
+   sPort = sPort4
+   If sPort = "" Then sPort = "22"
+   iAktiv = 4
+   sSenden = " scp -P " & sPort & " -r ~/DataSCP "
+   sHolen = " scp -P " & sPort & " -r "
+   Print sSenden & "        |       " & sHolen
 
 End
