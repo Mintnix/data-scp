@@ -5,6 +5,10 @@ Public sDistribution As String      'überflüssig?
 Public sDateimanager As String
 Public sTerminal As String
 
+Public sMinimiert As String
+Public iAktiv As String
+Public sProgrammfarbe As String
+
 'Servereinstellungen
 Public sServerIP1 As String
 Public sBenutzer1 As String
@@ -49,6 +53,9 @@ Dim sLine15 As String    ' ServerIP4
 Dim sLine16 As String    ' Benutzername4
 Dim sLine17 As String    ' SSH Port4
 Dim sLine18 As String    ' Servername4
+Dim sLine19 As String    ' minimiert
+Dim sLine20 As String    ' aktiv
+Dim sLine21 As String    ' Farbe
 
 
 hFile = Open "~/.datascp.txt" For Read       'Datei öffnen und einlesen
@@ -71,6 +78,9 @@ hFile = Open "~/.datascp.txt" For Read       'Datei öffnen und einlesen
    Line Input #hFile, sLine16
    Line Input #hFile, sLine17
    Line Input #hFile, sLine18
+   Line Input #hFile, sLine19
+   Line Input #hFile, sLine20
+   Line Input #hFile, sLine21
 
     '  Print sLine, sLine2, sLine3, sLine4, sLine5
    
@@ -93,6 +103,10 @@ hFile = Open "~/.datascp.txt" For Read       'Datei öffnen und einlesen
     sBenutzer4 = sLine16
     sPort4 = sLine17
     sServerName4 = sLine18
+    sMinimiert = sLine19
+    iAktiv = sLine20
+    sProgrammfarbe = sLine21
+    
   
    ' Felder mit den gelesenen Daten auffüllen
    TextBox1.Text = sServerIP1
@@ -111,6 +125,11 @@ hFile = Open "~/.datascp.txt" For Read       'Datei öffnen und einlesen
    TextBox14.Text = sBenutzer4
    TextBox13.Text = sPort4
    TextBox16.Text = sServerName4
+   
+   If sProgrammfarbe = "" Then sProgrammfarbe = FMain.sProgrammfarbe
+   Print FMain.sProgrammfarbe
+   AbfrageForm.Background = sProgrammfarbe
+   ColorButton1.Value = sProgrammfarbe
 
 ' Abfrage falls sLine1 leer sein sollte
 If sDateimanager = "" Then ComboBox1.Text = "Linux auswählen"
@@ -135,7 +154,7 @@ If ComboBox1.Text = "Linux Mint - Mate" Then sTerminal = "mate-terminal"
 If ComboBox1.Text = "Kubuntu" Then sTerminal = "konsole"
 If ComboBox1.Text = "Ubuntu" Then sTerminal = "gnome-terminal"
 
-If Exist("~/DataSCP") = True Then Label1.Text = "Der Arbeitsordner existiert\nschon und befindet sich im \nHomeverzeichnis mit \nNamen DataSCP."
+If Exist("~/DataSCP") = True Then Label1.Text = "Der Arbeitsordner existiert schon \nund befindet sich im Homeverzeichnis\n mit Namen DataSCP."
 
 End
 
@@ -196,7 +215,7 @@ Public Sub Button9_Click()
    If sPort4 = "SSH Port" Then sPort4 = "22"  
   
    '' jetz werden die Daten in Zeilen gespeichert
-   File.Save("~/.datascp.txt", sDateimanager & gb.NewLine & sTerminal & gb.NewLine & sServerIP1 & gb.NewLine & sBenutzer1 & gb.NewLine & sPort1 & gb.NewLine & sServerName1 & gb.NewLine & sServerIP2 & gb.NewLine & sBenutzer2 & gb.NewLine & sPort2 & gb.NewLine & sServerName2 & gb.NewLine & sServerIP3 & gb.NewLine & sBenutzer3 & gb.NewLine & sPort3 & gb.NewLine & sServerName3 & gb.NewLine & sServerIP4 & gb.NewLine & sBenutzer4 & gb.NewLine & sPort4 & gb.NewLine & sServerName4 & gb.NewLine)
+   File.Save("~/.datascp.txt", sDateimanager & gb.NewLine & sTerminal & gb.NewLine & sServerIP1 & gb.NewLine & sBenutzer1 & gb.NewLine & sPort1 & gb.NewLine & sServerName1 & gb.NewLine & sServerIP2 & gb.NewLine & sBenutzer2 & gb.NewLine & sPort2 & gb.NewLine & sServerName2 & gb.NewLine & sServerIP3 & gb.NewLine & sBenutzer3 & gb.NewLine & sPort3 & gb.NewLine & sServerName3 & gb.NewLine & sServerIP4 & gb.NewLine & sBenutzer4 & gb.NewLine & sPort4 & gb.NewLine & sServerName4 & gb.NewLine & sMinimiert & gb.NewLine & iAktiv & gb.NewLine & sProgrammfarbe & gb.NewLine)
    Catch
    If Error Then Message("Fehler", "ok")
    'If Error Then Return
@@ -225,5 +244,22 @@ End
 Public Sub Button1_Click()
    'Den Ordner der SSH Serverliste öffnen, um auf die Datei known_hosts zugreifen zu können
    Shell sDateimanager & " -- ~/.ssh/"
+
+End
+
+
+Public Sub ColorButton1_Change()
+
+    AbfrageForm.Background = ColorButton1.Color
+    sProgrammfarbe = ColorButton1.Color
+       
+
+End
+
+Public Sub ColorButton1_MouseWheel()
+
+     'Standartfarbe wiederherstellen!
+   FMain.sProgrammfarbe = 12582911
+   ColorButton1.Value = 12582911
 
 End

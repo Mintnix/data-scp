@@ -29,9 +29,10 @@ Public sServerIP4 As String          'Zeile 15
 Public sBenutzer4 As String          'Zeile 16
 Public sPort4 As String              'Zeile 17
 Public sServerName4 As String        'Zeile 18
-
 Public sMinimiert As String          'Zeile 19    -  minimiert ?
 Public iAktiv As String              'Zeile 20    -  Server ausgewählt
+Static Public sProgrammfarbe As String   'Zeile 21    -  soll die Hintergrundfarbe des Programms speichern
+
 
 Public sServerIP As String
 Public sBenutzer As String
@@ -69,6 +70,7 @@ Dim sLine17 As String    ' SSH Portnummer
 Dim sLine18 As String    ' Servername
 Dim sLine19 As String    ' Tray aktiviert?
 Dim sLine20 As String   ' vorheriger ausgewählter Server
+Dim sLine21 As String   ' Programmfarbe
 
 
 If Exist("~/DataSCP") = False Then
@@ -103,6 +105,7 @@ hFile = Open "~/.datascp.txt" For Read
    Line Input #hFile, sLine18
    Line Input #hFile, sLine19
    Line Input #hFile, sLine20
+   Line Input #hFile, sLine21
    
    sDateimanager = sLine1
    sTerminal = sLine2
@@ -124,6 +127,7 @@ hFile = Open "~/.datascp.txt" For Read
    sServerName4 = sLine18
    sMinimiert = sLine19
    iAktiv = sLine20
+   sProgrammfarbe = sLine21
    
    
    If iAktiv = 1 Then 
@@ -150,6 +154,13 @@ hFile = Open "~/.datascp.txt" For Read
    mServer2.Text = sServerName2
    mServer3.Text = sServerName3
    mServer4.Text = sServerName4
+   
+   If sProgrammfarbe = "" Then sProgrammfarbe = 12582911
+   'Programmfarbe einstellen
+   FMain.Background = sProgrammfarbe
+   Print sLine21
+   Print sProgrammfarbe
+   
    Wait 
 
 End
@@ -179,7 +190,7 @@ End
 
 Public Sub Speicherroutine()
    
-  File.Save("~/.datascp.txt", sDateimanager & gb.NewLine & sTerminal & gb.NewLine & sServerIP1 & gb.NewLine & sBenutzer1 & gb.NewLine & sPort1 & gb.NewLine & sServerName1 & gb.NewLine & sServerIP2 & gb.NewLine & sBenutzer2 & gb.NewLine & sPort2 & gb.NewLine & sServerName2 & gb.NewLine & sServerIP3 & gb.NewLine & sBenutzer3 & gb.NewLine & sPort3 & gb.NewLine & sServerName3 & gb.NewLine & sServerIP4 & gb.NewLine & sBenutzer4 & gb.NewLine & sPort4 & gb.NewLine & sServerName4 & gb.NewLine & sMinimiert & gb.NewLine & iAktiv & gb.NewLine)
+  File.Save("~/.datascp.txt", sDateimanager & gb.NewLine & sTerminal & gb.NewLine & sServerIP1 & gb.NewLine & sBenutzer1 & gb.NewLine & sPort1 & gb.NewLine & sServerName1 & gb.NewLine & sServerIP2 & gb.NewLine & sBenutzer2 & gb.NewLine & sPort2 & gb.NewLine & sServerName2 & gb.NewLine & sServerIP3 & gb.NewLine & sBenutzer3 & gb.NewLine & sPort3 & gb.NewLine & sServerName3 & gb.NewLine & sServerIP4 & gb.NewLine & sBenutzer4 & gb.NewLine & sPort4 & gb.NewLine & sServerName4 & gb.NewLine & sMinimiert & gb.NewLine & iAktiv & gb.NewLine & sProgrammfarbe & gb.NewLine)
    
 End
 
@@ -254,14 +265,14 @@ End
 
 Public Sub Label2_MouseDown()
 
-   Shell "firefox  https://openyourlinux.blogspot.com/p/data-scp-version-21x-bringt-einige.html"
+   Shell "firefox  https://openyourlinux.blogspot.com/p/data-scp-22x.html"
 
 End
 
 
 Public Sub Menu4_Click()
    '' Über... Button Versionsanzeige
-   Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version  " & Version, "OK")
+   Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version  " & Version, "OK") 
 
 End
 

@@ -2,12 +2,12 @@
 
 { Form Form
   MoveScaled(0,0,128,55)
-  Background = &HDFFFFF&
+  Background = &HBFFFFF&
   ToolTip = ("Data-SCP Einstellungsdialog")
   Resizable = False
   Border = False
   { Frame2 Frame
-    MoveScaled(2,33,87,20)
+    MoveScaled(2,33,102,20)
     ToolTip = ("System abhängige Einstellungen.")
     Text = ("Systemeinstellung")
     { ComboBox1 ComboBox
@@ -36,11 +36,15 @@
       Text = ("?!")
     }
     { Label1 Label
-      MoveScaled(40,3,45,16)
+      MoveScaled(40,3,42,15)
       Font = Font["+1"]
       ToolTip = ("Bei geänderten Einstellungen\ndas Speichern nicht vergessen.")
       Alignment = Align.Center
-      Text = ("Der Ordner für den \nDatenaustausch wird \nautomatisch beim Speichern \nim Home-Verzeichnis erstellt.")
+      Text = ("Der Ordner für den Datenaustausch\nwird automatisch beim Speichern im \nHome-Verzeichnis erstellt.")
+    }
+    { ColorButton1 ColorButton
+      MoveScaled(85,3,15,15)
+      ToolTip = ("Gewünschte Farbe der Anwendung einstellen.\n\nWollen Sie zurück zur ursprünglichen Farbe,\ndann drehen Sie über dem Feld das Mausrad.")
     }
   }
   { Frame1 Frame
@@ -145,7 +149,7 @@
     }
   }
   { Button9 Button
-    MoveScaled(91,44,35,4)
+    MoveScaled(106,44,20,4)
     Font = Font["Bold"]
     Foreground = Color.Orange
     ToolTip = ("Speichert die individuelle Serverliste und\ndie Systemeinstellungen in einer Datei ab.")
@@ -158,12 +162,12 @@
     Text = ("Einstellungsdialog")
   }
   { Button3 Button
-    MoveScaled(91,49,35,4)
+    MoveScaled(106,49,20,4)
     ToolTip = ("Schließt die Einstellungen und beendet das Programm.\nBitte vorher die Einstellungen abspeichern!")
     Text = Shortcut(("Schließen"), "S")
   }
   { PictureBox1 PictureBox
-    MoveScaled(103,33,11,10)
+    MoveScaled(111,33,10,10)
     ToolTip = ("Client oder Server oder beides? \n\nDamit das Programm richtig funktioniert, gibt es mindestens einen Server in Ihrem Netzwerk. Von diesem können Clienten Daten herunterladen oder zu auch hochladen. Will man vom jeweils anderen Rechner die selbige Funktion, so ist der openssh Server zu installieren, falls nicht schon vorinstalliert.\nMerke: Der Rechner an dem ich gerade sitze ist der Client. Der entfernte Rechner ist der Server.")
     Picture = Picture["icon:/64/info"]
     Alignment = Align.Center
