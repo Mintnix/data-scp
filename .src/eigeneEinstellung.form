@@ -2,7 +2,7 @@
 
 { Form Form
   MoveScaled(0,0,48,23)
-  Background = &HDFFFFF&
+  Background = &HBFFFFF&
   Border = False
   Stacking = Window.Above
   { Label1 Label
