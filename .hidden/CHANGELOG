@@ -1,3 +1,7 @@
+* Sun May 19 2024 Mintnix <pcspezialist@arcor.de> 2.2.1
+- + Fehlerkorrektur bei Programmabbruch hinzugefügt
+- + URL mit Standardbrowser öffnen, statt mit Firefox
+
 * Sat Jul 29 2023 Mintnix <pcspezialist@arcor.de> 2.2.0
 - + Info-Seite angepasst
 
