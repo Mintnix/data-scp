@@ -7,7 +7,7 @@ Public Sub Main()
   'FMain.Width = 308
   'FMain.Height = 252
   FMain.Show() 
-  Wait 0.1 
+  Wait 0.03 
   FMain.FirstInit()
   
 End

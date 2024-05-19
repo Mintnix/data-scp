@@ -43,6 +43,13 @@ Public sHolen As String
 
 
 '' ---------------------------------------------Programmcode--------------------------------------------------
+Public Sub Form_Close()
+  ' Hier ist die Behandlung für den Programmabbruch, denn bei Klick auf X oder Alt+F4 würde sonst das TrayModul nicht geschlossen und so im Hintergrund herumgeistern. Wichtig! 
+  TrayIcons.DeleteAll 
+  
+End
+
+
 Public Sub Form_Open()
 'Was soll beim Start passieren?
 '1. Prüfen ob das Arbeitsverzeichnis vorhanden ist, ggf anlegen
@@ -158,8 +165,8 @@ hFile = Open "~/.datascp.txt" For Read
    If sProgrammfarbe = "" Then sProgrammfarbe = 12582911
    'Programmfarbe einstellen
    FMain.Background = sProgrammfarbe
-   Print sLine21
-   Print sProgrammfarbe
+   'Print sLine21 '' ist die Programmfarbe 
+   Print sProgrammfarbe & " eingestellte Programmfarbe  (12582911 entspricht der Standardfarbe)"
    
    Wait 
 
@@ -264,9 +271,9 @@ End
 
 
 Public Sub Label2_MouseDown()
-
-   Shell "firefox  https://openyourlinux.blogspot.com/p/data-scp-22x.html"
-
+   ' öffnet den eingestellten Standardbrowser, Desktop.Open ist eine bessere Wahl als z.B. shell "firefox"
+   Desktop.Open("https://openyourlinux.blogspot.com/p/data-scp-22x.html") 
+   
 End
 
 
@@ -367,7 +374,9 @@ End
 Public Sub mServer2_Click()
 
    sServerIP = sServerIP2
+   Print sServerIP
    sBenutzer = sBenutzer2 
+   Print sBenutzer
    sPort = sPort2
    If sPort = "" Then sPort = "22"
    iAktiv = 2
@@ -380,7 +389,9 @@ End
 Public Sub mServer3_Click()
 
    sServerIP = sServerIP3
+   Print sServerIP
    sBenutzer = sBenutzer3 
+   Print sBenutzer
    sPort = sPort3
    If sPort = "" Then sPort = "22"
    iAktiv = 3
@@ -393,7 +404,9 @@ End
 Public Sub mServer4_Click()
 
    sServerIP = sServerIP4
+   Print sServerIP
    sBenutzer = sBenutzer4 
+   Print sBenutzer
    sPort = sPort4
    If sPort = "" Then sPort = "22"
    iAktiv = 4
