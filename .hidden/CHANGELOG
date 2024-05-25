@@ -1,3 +1,10 @@
+* Sat May 25 2024 Mintnix <pcspezialist@arcor.de> 2.2.2
+- + einen eigenen Dateiexplorer zum Programm hinzugefügt
+- - + Löschen in Papierkorb - Funktion eingebettet
+- - + Kopierfunktion hinzugefügt
+- - + Dateiexplorer Hintergrundfarbe wird über globale Programmfarbe eingestellt
+- - gb.vb aus Programmverwendung entfernt - gibt es dazu Fehler?
+
 * Sun May 19 2024 Mintnix <pcspezialist@arcor.de> 2.2.1
 - + Fehlerkorrektur bei Programmabbruch hinzugefügt
 - + URL mit Standardbrowser öffnen, statt mit Firefox
