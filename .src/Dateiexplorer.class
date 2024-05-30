@@ -1,0 +1,227 @@
+' Gambas class file
+
+Public Trash_Dir As String = "~/.local/share/Trash"
+Public Trash_Files As String = Trash_Dir &/ "files"
+Public Trash_Info As String = Trash_Dir &/ "info"
+Public QUELLDATEI As String
+Public QUELLE As String
+Public ZIEL As String
+
+Public Sub Form_Open()              '' Was beim Öffnen der Form geschehen soll
+   Splitter1.Layout = [20, 50, 30]
+   FileView1.Dir = DirView1.Current
+   'Print FileView1.Dir
+   FileView2.Dir = User.Home &/ "DataSCP"
+   TextLabel1.Text = "Zugriff auf Verzeichnisse"
+   TextLabel2.Text = "Zugriff auf den DataSCP - Ordner"
+   'Print Trash_Info
+   
+   Dateiexplorer.Background = FMain.sProgrammfarbe
+   DirView1.Background = FMain.sProgrammfarbe
+   FileView1.Background = FMain.sProgrammfarbe
+   FileView2.Background = FMain.sProgrammfarbe
+   
+End
+
+
+''############################### Löschen in Papierkorb ###########################################################
+Public Sub Loeschen()                 'Löschfunktion aufgeteilt
+  TextLabel1.Text = "Es soll gelöscht werden."
+  create_trashinfo
+  move_totrash
+  If Error Then TextLabel1.Text = "Das hat nicht funktioniert."
+End
+
+Public Sub create_trashinfo()          'Löschinfodatei erstellen
+   Dim Info As String = "[Trash Info]"
+   Dim Pfad As String
+   Dim deletion_date As String
+   Dim dDate As Date
+
+   dDate = Now()
+   deletion_date = "DeletionDate=" & Format$(dDate, "yyyy-mm-ddThh:nn:ss")
+   Pfad = "Path=" & QUELLE &/ QUELLDATEI
+  
+   If QUELLDATEI = "" Then 
+   Message("Fehler, nichts ausgewählt.", "OK")
+   Else If Exist(Trash_Info &/ QUELLDATEI & ".trashinfo") Then
+     Message("Eine Datei, gleichen Namens, liegt schon\n im Papierkorb. Papierkorb vorher leeren.", "OK")
+   Else If Not Exist(Trash_Info &/ QUELLDATEI & ".trashinfo") Then 
+      Try File.Save(Trash_Info &/ QUELLDATEI & ".trashinfo", Info & gb.NewLine & Pfad & gb.NewLine & deletion_date)
+      If Error Then Message("Es ist ein Fehler aufgetreten.", "OK")
+      TextLabel1.Text = "Datei in den Papierkorb verschoben."
+   Endif 
+End
+
+Public Sub move_totrash()             'Datei in den Papierkorb schieben
+  If QUELLDATEI = "" Then 
+    TextLabel2.Text = "Keine Datei ausgewählt."
+  Else If Exist(Trash_Files &/ QUELLDATEI) Then
+    TextLabel2.Text = "Datei konnte nicht verschoben werden."
+  Else If Not Exist(Trash_Files &/ QUELLDATEI) Then
+    Try Move QUELLE &/ QUELLDATEI To Trash_Files &/ QUELLDATEI
+    If Error Then Message("Es ist ein Fehler aufgetreten", "OK")
+    TextLabel2.Text = "Datei in den Papierkorb gelegt."
+  Endif 
+End
+''################################################# könnte noch etwas verbessert werden ################################
+
+Public Sub DirView1_Click()             'Verzeichnis in FileView 1 auswählen
+  FileView1.Dir = DirView1.Current
+  Print FileView1.Dir
+  Print DirView1.Current
+  TextLabel1.Text = "Pfad ausgewählt"
+End
+
+
+Public Sub FileView2_Drop()           ''Kopieren und ersetzen Feld rechts
+  Dim Frage As Integer
+  ZIEL = FileView2.Dir &/ QUELLDATEI
+  Print ZIEL
+
+  If Not Exist(ZIEL) Then
+    Try Copy QUELLE &/ QUELLDATEI To ZIEL
+      TextLabel2.Text = "Erfolgreich kopiert."
+      FileView2.Reload
+    Else If QUELLDATEI = "" Then
+     TextLabel2.Text = "Nichts gewählt."
+    Else If QUELLE &/ QUELLDATEI == ZIEL Then 
+      TextLabel2.Text = "Kann nicht auf sich selbst kopieren."
+      TextLabel1.Text = "Das geht nicht."
+    Else If Exist(ZIEL) Then 
+     Frage = Message.Question("Datei existiert bereits. Überschreiben?", "JA", "NEIN")
+      If Frage = 1 Then 
+       Print Frage
+       Try Kill (ZIEL)
+       Try Copy QUELLE &/ QUELLDATEI To ZIEL
+       If Error Then Message("Es ist ein Fehler aufgetreten!")
+       TextLabel2.Text = "Erfolgreich überschrieben."
+       FileView2.Reload
+     Endif 
+     If Frage = 2 Then TextLabel2.Text = "Nix passiert." 
+    FileView2.Reload
+  Endif 
+End
+
+
+Public Sub FileView1_Drop()            ''Kopieren und ersetzen Feld links
+  Dim Frage As Integer
+  ZIEL = FileView1.Dir &/ QUELLDATEI
+  Print ZIEL
+
+  If IsDir(QUELLE &/ QUELLDATEI) = True Then
+     TextLabel1.Text = "Verzeichnis kopieren geht nicht."
+     Else If Not Exist(ZIEL) Then 
+        Try Copy QUELLE &/ QUELLDATEI To ZIEL
+        TextLabel1.Text = "Erfolgreich kopiert."
+        FileView1.Reload
+     Else If QUELLDATEI = "" Then
+        TextLabel1.Text = "Nichts gewählt."
+     Else If QUELLE &/ QUELLDATEI == ZIEL Then 
+        TextLabel1.Text = "Kann nicht auf sich selbst kopieren."
+        TextLabel2.Text = "Das geht nicht."
+     Else If Exist(ZIEL) Then 
+        Frage = Message.Question("Datei existiert bereits. Überschreiben?", "JA", "NEIN")
+     Print Frage
+     If Frage = 1 Then 
+        Try Kill (ZIEL)
+        Try Copy QUELLE &/ QUELLDATEI To ZIEL
+        If Error Then Message("Es ist ein Fehler aufgetreten!")
+        TextLabel1.Text = "Erfolgreich überschrieben."
+        FileView1.Reload
+     Endif 
+     If Frage = 2 Then TextLabel1.Text = "Nix passiert."
+     FileView1.Reload
+  Endif 
+End
+
+Public Sub FileView2_KeyRelease()         'Löschen mit Entf-Taste
+  QUELLE = FileView2.Dir
+  QUELLDATEI = FileView2.Current
+  If QUELLDATEI = "" Then 
+     TextLabel2.Text = "Keine Datei ausgewählt."
+  Else If Key.Code = Key.Delete Then
+     Loeschen
+  Endif 
+  FileView2.Reload
+End
+
+Public Sub FileView1_KeyRelease()         'Löschen mit Entf-Taste
+  QUELLE = FileView1.Dir
+  QUELLDATEI = FileView1.Current
+  If QUELLDATEI = "" Then 
+     TextLabel1.Text = "Keine Datei ausgewählt."
+  Else If Key.Code = Key.Delete Then
+     Loeschen
+  Endif  
+  FileView1.Reload
+End
+
+
+Public Sub FileView2_MouseDrag()         'Datei markieren und ziehen zum Kopieren
+   QUELLE = FileView2.Dir
+   QUELLDATEI = FileView2.Current
+   Print QUELLE &/ QUELLDATEI
+   If IsDir(QUELLE &/ QUELLDATEI) = True Then
+      TextLabel2.Text = "Verzeichnis kann nicht kopiert werden."
+   Else If QUELLDATEI = "" Then 
+      TextLabel2.Text = "Nicht bereit zum Kopieren."
+   Else
+      TextLabel2.Text = "Bereit " & QUELLDATEI & " zum Kopieren."
+   Endif 
+   FileView2.Drag(FileView2.Current)
+
+End
+
+Public Sub FileView1_MouseDrag()          'Datei markieren und ziehen zum Kopieren
+   QUELLE = FileView1.Dir
+   QUELLDATEI = FileView1.Current
+   Print QUELLE &/ QUELLDATEI
+   If IsDir(QUELLE &/ QUELLDATEI) = True Then
+      TextLabel2.Text = "Verzeichnis kann nicht kopiert werden."
+   Else If QUELLDATEI = "" Then 
+      TextLabel1.Text = "Nicht bereit zum Kopieren."
+   Else
+      TextLabel1.Text = "Bereit " & QUELLDATEI & " zum Kopieren."
+   Endif 
+   FileView2.Drag(FileView2.Current)
+End
+
+Public Sub Menu2_Click()
+   'Versteckte Dateien anzeigen
+   If Menu2.Checked = True Then FileView1.ShowHidden = True Else FileView1.ShowHidden = False
+   If Menu2.Checked = True Then FileView2.ShowHidden = True Else FileView2.ShowHidden = False
+End
+
+Public Sub Menu3_Click()
+   ' Fenster schließen
+   Me.Close
+End
+
+Public Sub FileView2_GotFocus()
+   ' Ansicht sollte hier aktualisiert werden
+   FileView2.Reload
+End
+
+Public Sub mHilfeMenu_Click()
+   ' Hilfe zum Dateiexplorer
+   Message.Info("Der Dateiexplorer zeigt auf der linken Seite den Home-Bereich an\n und auf der rechten Seite wird der Arbeitsordner ~/DataSCP präsentiert.\n Hier kann man nun Dateien, die man senden oder empfangen will,\n gewünscht kopieren. Löschen von Dateien ist auch möglich. Diese\n werden in den Papierkorb verschoben.\n Vorsicht bei der Option zum Leeren des Server-Arbeitsordners.")
+End
+
+Public Sub Menu5_Click()
+   '' Dateien auf dem Server löschen
+   Dim Frage As Integer
+
+   Frage = Message.Question("Vorsicht!\n\n Wirklich die Dateien, im Arbeitsordner\n ~/DataSCP des Servers löschen?\n Das Löschen ist endgültig.", "JA", "NEIN")
+   If Frage = 1 Then 
+      If FMain.sTerminal = "xfce4-terminal" Then 
+         Try Shell FMain.sTerminal & " -x" & " ssh " & FMain.sBenutzer & "@" & FMain.sServerIP & " -p" & FMain.sPort & " rm -rf DataSCP/*"
+         If Error Then Message("Fehler", "ok")
+         Wait
+      Else
+         Try Shell FMain.sTerminal & " --" & " ssh " & FMain.sBenutzer & "@" & FMain.sServerIP & " -p" & FMain.sPort & " rm -rf DataSCP/*"
+         If Error Then Message("Fehler", "ok")
+         Wait 
+      Endif 
+   Endif 
+End

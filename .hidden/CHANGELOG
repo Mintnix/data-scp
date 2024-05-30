@@ -1,3 +1,15 @@
+* Thu May 30 2024 Mintnix <pcspezialist@arcor.de> 2.2.3
+- + Im Dateiexplorer Fehlerbehandlung bei Ordner statt Datei eingebaut
+- + Löschfunktion hinzugefügt, mit der man den Arbeitsordner auf dem Server leeren kann
+- - Dateiexplorer Menü angepasst
+
+* Sat May 25 2024 Mintnix <pcspezialist@arcor.de> 2.2.2
+- + einen eigenen Dateiexplorer zum Programm hinzugefügt
+- - + Löschen in Papierkorb - Funktion eingebettet
+- - + Kopierfunktion hinzugefügt
+- - + Dateiexplorer Hintergrundfarbe wird über globale Programmfarbe eingestellt
+- - gb.vb aus Programmverwendung entfernt - gibt es dazu Fehler?
+
 * Sun May 19 2024 Mintnix <pcspezialist@arcor.de> 2.2.1
 - + Fehlerkorrektur bei Programmabbruch hinzugefügt
 - + URL mit Standardbrowser öffnen, statt mit Firefox

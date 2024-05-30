@@ -2,7 +2,7 @@ Trayicontrick
 Data-SCP
 0
 0
-2.2.1
+2.2.3
 
 gb.image
 gb.gtk3
@@ -12,5 +12,4 @@ gb.desktop
 gb.desktop.x11
 gb.gui.trayicon
 gb.net
-gb.vb
 

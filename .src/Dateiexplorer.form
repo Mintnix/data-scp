@@ -1,0 +1,70 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,171.4286,92.8571)
+  Resizable = False
+  Utility = True
+  Centered = True
+  { Menu1 Menu
+    Text = ("Optionen")
+    { Menu2 Menu
+      Text = ("Versteckte Dateien anzeigen")
+      Toggle = True
+    }
+    { Menu5 Menu
+      Text = ("Arbeistordner des Servers leeren")
+    }
+    { mHilfeMenu Menu
+      Text = ("Hilfe zum Dateiexplorer")
+    }
+    { Menu4 Menu
+    }
+    { Menu3 Menu
+      Text = ("Schließen")
+    }
+  }
+  { Splitter1 Splitter
+    MoveScaled(2,2,167,79)
+    { DirView1 DirView
+      MoveScaled(3,8,35,68)
+      Border = False
+    }
+    { FileView1 FileView
+      MoveScaled(41,8,71,68)
+      Drop = True
+      Border = False
+      ShowDetailed = True
+    }
+    { FileView2 FileView
+      MoveScaled(115,8,49,68)
+      Drop = True
+      Border = False
+      ShowDirectory = True
+    }
+  }
+  { HBox1 HBox
+    MoveScaled(2,82,167,6)
+    { Spring3 Spring
+      MoveScaled(2,1,4,4)
+    }
+    { TextLabel1 TextLabel
+      MoveScaled(11,2,62,3)
+      Text = ("Text 1")
+      Alignment = Align.Center
+    }
+    { Spring1 Spring
+      MoveScaled(81,1,4,4)
+    }
+    { Spring4 Spring
+      MoveScaled(96,1,16,4)
+    }
+    { TextLabel2 TextLabel
+      MoveScaled(117,2,43,3)
+      Text = ("Text 2")
+      Alignment = Align.Center
+    }
+    { Spring2 Spring
+      MoveScaled(160,1,4,4)
+    }
+  }
+}

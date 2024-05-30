@@ -46,6 +46,7 @@ Public sHolen As String
 Public Sub Form_Close()
   ' Hier ist die Behandlung für den Programmabbruch, denn bei Klick auf X oder Alt+F4 würde sonst das TrayModul nicht geschlossen und so im Hintergrund herumgeistern. Wichtig! 
   TrayIcons.DeleteAll 
+  Dateiexplorer.Delete
   
 End
 
@@ -166,8 +167,7 @@ hFile = Open "~/.datascp.txt" For Read
    'Programmfarbe einstellen
    FMain.Background = sProgrammfarbe
    'Print sLine21 '' ist die Programmfarbe 
-   Print sProgrammfarbe & " eingestellte Programmfarbe  (12582911 entspricht der Standardfarbe)"
-   
+   Print sProgrammfarbe & " eingestellte Programmfarbe  (12582911 entspricht der Standardfarbe)"   
    Wait 
 
 End
@@ -237,7 +237,8 @@ End
 
 Public Sub Button8_Click()
    'Den Uploadordner öffnen
-   Shell sDateimanager & " -- ~/DataSCP"
+   'Shell sDateimanager & " -- ~/DataSCP"
+   Dateiexplorer.Show
  
 End
 
@@ -265,6 +266,7 @@ Public Sub Button3_Click()
    Speicherroutine()
    Shell sDateimanager & " -q" Wait
    TrayIcons.DeleteAll
+   Dateiexplorer.Delete
    Me.Close
         
 End
@@ -293,13 +295,15 @@ Public Sub Menu5_Click()
    'Programm schließen
    Shell sDateimanager & " -q" Wait
    TrayIcons.DeleteAll
+   Dateiexplorer.Delete
    Me.Close
 
 End
 
 Public Sub TrayIcon1_Click()
    '' Den Uploadordner öffnen
-   Shell sDateimanager & " -- ~/DataSCP"
+   'Shell sDateimanager & " -- ~/DataSCP"
+   Dateiexplorer.Show
 
 End
 
