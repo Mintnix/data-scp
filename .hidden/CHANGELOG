@@ -1,4 +1,6 @@
 * Thu May 30 2024 Mintnix <pcspezialist@arcor.de> 2.2.3
+
+* Thu May 30 2024 Mintnix <pcspezialist@arcor.de> 2.2.3
 - + Im Dateiexplorer Fehlerbehandlung bei Ordner statt Datei eingebaut
 - + Löschfunktion hinzugefügt, mit der man den Arbeitsordner auf dem Server leeren kann
 - - Dateiexplorer Menü angepasst
