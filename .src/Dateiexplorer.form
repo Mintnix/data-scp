@@ -6,10 +6,13 @@
   Utility = True
   Centered = True
   { Menu1 Menu
-    Text = ("Ansicht")
+    Text = ("Optionen")
     { Menu2 Menu
       Text = ("Versteckte Dateien anzeigen")
       Toggle = True
+    }
+    { Menu5 Menu
+      Text = ("Arbeistordner des Servers leeren")
     }
     { mHilfeMenu Menu
       Text = ("Hilfe zum Dateiexplorer")
@@ -36,6 +39,7 @@
       MoveScaled(115,8,49,68)
       Drop = True
       Border = False
+      ShowDirectory = True
     }
   }
   { HBox1 HBox

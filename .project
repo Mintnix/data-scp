@@ -2,7 +2,7 @@
 Title=Data-SCP
 Startup=Trayicontrick
 Icon=data-scp.png
-Version=2.2.2
+Version=2.2.3
 Component=gb.image
 Component=gb.gtk3
 Component=gb.form
@@ -24,7 +24,7 @@ Vendor=Mintnix
 Address=pcspezialist@arcor.de
 Url=openyourlinux.blogspot.de
 License=General Public License
-PackageName=data-scp-2.2.2
+PackageName=data-scp-2.2.3
 RuntimeVersion="3.16"
 Packager=1
 Systems=ubuntu
