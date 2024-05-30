@@ -12,7 +12,7 @@
       Toggle = True
     }
     { Menu5 Menu
-      Text = ("Arbeistordner des Servers leeren")
+      Text = ("Arbeitsordner des Servers leeren")
     }
     { mHilfeMenu Menu
       Text = ("Hilfe zum Dateiexplorer")
