@@ -5,34 +5,31 @@ Public Version As String = Application.Version     'Version aus App holen
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 ''globale Variablen sind Static - mit Fmain. aufrufen
-'Static Public sManager As String    'globale Dateimanager Variable
 Static Public sGlobal1 As String    'Zeile 1    -  individueller Dateimanager
 Static Public sGlobal2 As String    'Zeile 2    -  individuelles Terminal 
 
-''Variablen deklarieren, hier???'''''''''''''''''''''''
-Public sDateimanager As String       'Zeile 1
-Public sTerminal As String           'Zeile 2
-
-Public sServerIP1 As String          'Zeile 3
-Public sBenutzer1 As String          'Zeile 4
-Public sPort1 As String              'Zeile 5
-Public sServerName1 As String        'Zeile 6
-Public sServerIP2 As String          'Zeile 7
-Public sBenutzer2 As String          'Zeile 8
-Public sPort2 As String              'Zeile 9
-Public sServerName2 As String        'Zeile 10
-Public sServerIP3 As String          'Zeile 11
-Public sBenutzer3 As String          'Zeile 12
-Public sPort3 As String              'Zeile 13
-Public sServerName3 As String        'Zeile 14
-Public sServerIP4 As String          'Zeile 15
-Public sBenutzer4 As String          'Zeile 16
-Public sPort4 As String              'Zeile 17
-Public sServerName4 As String        'Zeile 18
-Public sMinimiert As String          'Zeile 19    -  minimiert ?
-Public iAktiv As String              'Zeile 20    -  Server ausgewählt
-Static Public sProgrammfarbe As String   'Zeile 21    -  soll die Hintergrundfarbe des Programms speichern
-
+''Variablen deklarieren, hier!
+Public sDateimanager As String            'Zeile 1    -  der Dateimanager
+Public sTerminal As String                'Zeile 2    -  das Terminal
+Public sServerIP1 As String               'Zeile 3
+Public sBenutzer1 As String               'Zeile 4
+Public sPort1 As String                   'Zeile 5
+Public sServerName1 As String             'Zeile 6
+Public sServerIP2 As String               'Zeile 7
+Public sBenutzer2 As String               'Zeile 8
+Public sPort2 As String                   'Zeile 9
+Public sServerName2 As String             'Zeile 10
+Public sServerIP3 As String               'Zeile 11
+Public sBenutzer3 As String               'Zeile 12
+Public sPort3 As String                   'Zeile 13
+Public sServerName3 As String             'Zeile 14
+Public sServerIP4 As String               'Zeile 15
+Public sBenutzer4 As String               'Zeile 16
+Public sPort4 As String                   'Zeile 17
+Public sServerName4 As String             'Zeile 18
+Public sMinimiert As String               'Zeile 19    -  minimiert ?
+Public iAktiv As String                   'Zeile 20    -  Server ausgewählt
+Static Public sProgrammfarbe As String    'Zeile 21    -  soll die Hintergrundfarbe des Programms speichern
 
 Public sServerIP As String
 Public sBenutzer As String
@@ -47,9 +44,7 @@ Public Sub Form_Close()
   ' Hier ist die Behandlung für den Programmabbruch, denn bei Klick auf X oder Alt+F4 würde sonst das TrayModul nicht geschlossen und so im Hintergrund herumgeistern. Wichtig! 
   TrayIcons.DeleteAll 
   Dateiexplorer.Delete
-  
 End
-
 
 Public Sub Form_Open()
 'Was soll beim Start passieren?
@@ -84,15 +79,13 @@ Dim sLine21 As String   ' Programmfarbe
 If Exist("~/DataSCP") = False Then
    Message("Konfiguration existiert noch nicht .\nBitte den Einstellungsdialog öffnen und anpassen.", "OK") 
 Endif
-
 'Konfigurationsdatei wird automatisch angelegt
 If Exist("~/.datascp.txt") = False Then
-   Shell "touch ~/.datascp.txt" Wait
+   Shell "touch ~/.datascp.txt" Wait 
 Endif
 
 'hier wird geladen und in Variablen gefüllt
 hFile = Open "~/.datascp.txt" For Read
-
    Line Input #hFile, sLine1
    Line Input #hFile, sLine2
    Line Input #hFile, sLine3
@@ -155,14 +148,13 @@ hFile = Open "~/.datascp.txt" For Read
    mServer4.Checked = True
    Endif 
    If iAktiv = "" Then Message("Es wurde noch kein Server ausgewählt,\noder es sind noch keine Server in den \nEinstellungen eingetragen.", "OK") 
-   'Print iAktiv
-   
+
    'Menü mit den Namen der Server auffüllen - Gambas zeigt im Übrigen nur Menüeinträge an, die nicht "leer" sind.
    mServer1.Text = sServerName1
    mServer2.Text = sServerName2
    mServer3.Text = sServerName3
    mServer4.Text = sServerName4
-   
+   'Standardprogrammfarbe Abfrage
    If sProgrammfarbe = "" Then sProgrammfarbe = 12582911
    'Programmfarbe einstellen
    FMain.Background = sProgrammfarbe
@@ -173,10 +165,9 @@ hFile = Open "~/.datascp.txt" For Read
 End
 
 
-''Check nach erstem Programmaufruf mit ggf. Minimierung der Anwendung als Trayicon in die Leiste
-' funktioniert über den Trick des Programmaufrufes über ein andres Modul als Startklasse - Dank an Koko
 Public Sub FirstInit()
-   
+   ''Check nach erstem Programmaufruf mit ggf. Minimierung der Anwendung als Trayicon in die Leiste
+   ' funktioniert über den Trick des Programmaufrufes über ein anderes Modul als Startklasse - Dank an Koko
     If sMinimiert = "minimiert" Then 
          'Menu8.Show
          'Menu9.Show
@@ -190,42 +181,39 @@ Public Sub FirstInit()
          'Me.Height = 333
          Me.Visible = False
          TrayIcon1.Show
-      
     Endif
-   
 End
 
 Public Sub Speicherroutine()
-   
+   'Speicherfunktion   
   File.Save("~/.datascp.txt", sDateimanager & gb.NewLine & sTerminal & gb.NewLine & sServerIP1 & gb.NewLine & sBenutzer1 & gb.NewLine & sPort1 & gb.NewLine & sServerName1 & gb.NewLine & sServerIP2 & gb.NewLine & sBenutzer2 & gb.NewLine & sPort2 & gb.NewLine & sServerName2 & gb.NewLine & sServerIP3 & gb.NewLine & sBenutzer3 & gb.NewLine & sPort3 & gb.NewLine & sServerName3 & gb.NewLine & sServerIP4 & gb.NewLine & sBenutzer4 & gb.NewLine & sPort4 & gb.NewLine & sServerName4 & gb.NewLine & sMinimiert & gb.NewLine & iAktiv & gb.NewLine & sProgrammfarbe & gb.NewLine)
-   
 End
 
 
 Public Sub Button2_Click()
    ''Daten zum Server senden →
-   
-   'bisheriger Befehl
-   'If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Else Shell sTerminal & " -- scp -r ~/DataSCP" & " " & sBenutzer & "@" & sServerIP & ":~/" Wait
-   Print sTerminal & " --" & sSenden & sBenutzer & "@" & sServerIP & ":~/"
-   'neuer Befehl
-   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Else Shell sTerminal & " --" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Wait 
-   Catch
-    If Error Then Message("Fehler", "ok")
-           
+   If sTerminal = "xfce4-terminal" Then 
+      Shell sTerminal & " -x" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Wait 
+   Else If sTerminal = "konsole" Then
+      Shell sTerminal & " -e" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Wait 
+   Else 
+      Shell sTerminal & " --" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Wait
+   Catch    'Fehlerbehandlung hier ? oder wie unten nach endif ?
+      If Error Then Message("Fehler", "OK")
+   Endif 
 End
 
 Public Sub Button1_Click()
    ''Daten vom Server abholen ←
-               
-   'bisheriger Befehl
-   'If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Else Shell sTerminal & " -- scp -r " & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait 
-   
-   'neuer Befehl
-   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x" & sHolen & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Else Shell sTerminal & " --" & sHolen & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait
-   Catch
+   If sTerminal = "xfce4-terminal" Then
+      Shell sTerminal & " -x" & sHolen & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait 
+   Else If sTerminal = "konsole" Then 
+      Shell sTerminal & " -e" & sHolen & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait 
+   Else
+      Shell sTerminal & " --" & sHolen & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait
+   Endif 
+   Catch    'Fehlerbehandlung
     If Error Then Message("Fehler", "ok") 
-   
 End
 
 
@@ -237,15 +225,12 @@ End
 
 Public Sub Button8_Click()
    'Den Uploadordner öffnen
-   'Shell sDateimanager & " -- ~/DataSCP"
-   Dateiexplorer.Show
- 
+    Dateiexplorer.Show
 End
 
 Public Sub Form_DblClick()
-
-   Message("Sie verwenden " & sDateimanager, "OK")
-   
+   'welcher Desktop ?
+   Message("Sie verwenden " & Desktop.Type, "OK")
 End
 
 Public Sub Form_KeyPress()
@@ -257,60 +242,54 @@ Public Sub Form_KeyPress()
    If Key.Code = Key.ESC And Form1.Closed = False Then 
      Form1.Delete 
    Endif 
-
 End
 
 
 Public Sub Button3_Click()
    ''Programm schließen
    Speicherroutine()
-   Shell sDateimanager & " -q" Wait
    TrayIcons.DeleteAll
    Dateiexplorer.Delete
    Me.Close
-        
 End
 
 
 Public Sub Label2_MouseDown()
    ' öffnet den eingestellten Standardbrowser, Desktop.Open ist eine bessere Wahl als z.B. shell "firefox"
-   Desktop.Open("https://openyourlinux.blogspot.com/p/data-scp-22x.html") 
-   
+   If Desktop.Type = "KDE" Then 
+      Shell "firefox https://openyourlinux.blogspot.com/p/data-scp-22x.html"
+   Else 
+      Desktop.Open("https://openyourlinux.blogspot.com/p/data-scp-22x.html") 
+   Endif 
 End
 
 
 Public Sub Menu4_Click()
    '' Über... Button Versionsanzeige
    Message("Hilfe im Hauptfenster über F1 oder im Menü.\n\nProgramm Version  " & Version, "OK") 
-
 End
 
 Public Sub Menu3_Click()
    'Einstellungsbutton öffnet Abfragedialog
    AbfrageForm.Show
-
 End
 
 Public Sub Menu5_Click()
    'Programm schließen
-   Shell sDateimanager & " -q" Wait
    TrayIcons.DeleteAll
    Dateiexplorer.Delete
    Me.Close
-
 End
 
 Public Sub TrayIcon1_Click()
    '' Den Uploadordner öffnen
    'Shell sDateimanager & " -- ~/DataSCP"
    Dateiexplorer.Show
-
 End
 
 Public Sub Menu2_Click()
    'Hilfe F1 anzeigen
    Form1.Show
-
 End
 
 Public Sub Menu7_Click()
@@ -320,7 +299,6 @@ Public Sub Menu7_Click()
    If sMinimiert = "minimiert" Then Menu10.Checked = True
    TrayIcon1.Show
    Me.Visible = False
-   
 End
 
 Public Sub TrayIcon1_MiddleClick()
@@ -330,21 +308,29 @@ Public Sub TrayIcon1_MiddleClick()
     mServerliste.Enabled = True
     TrayIcon1.Hide
     Me.Visible = True
-   
 End
-
 
 
 Public Sub Menu8_Click()
    ''Daten senden über Trayicon
-   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Else Shell sTerminal & " --" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Wait
-
+   If sTerminal = "xfce4-terminal" Then 
+      Shell sTerminal & " -x" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Wait 
+   Else If sTerminal = "konsole" Then
+      Shell sTerminal & " -e" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Wait 
+   Else 
+      Shell sTerminal & " --" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Wait
+   Endif 
 End
 
 Public Sub Menu9_Click()
-   ''Daten vom Server abrufen über Trayicon
-   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x" & sHolen & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Else Shell sTerminal & " --" & sHolen & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait
-
+   ''Daten abrufen über Trayicon
+   If sTerminal = "xfce4-terminal" Then
+      Shell sTerminal & " -x" & sHolen & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait 
+   Else If sTerminal = "konsole" Then 
+      Shell sTerminal & " -e" & sHolen & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait 
+   Else
+      Shell sTerminal & " --" & sHolen & sBenutzer & "@" & sServerIP & ":~/DataSCP/ ~/" Wait
+   Endif 
 End
 
 
@@ -356,11 +342,10 @@ Public Sub Menu10_Click()
     Catch
     If Error Then Message("Fehler", "ok")
    'If Error Then Return
-
 End
 
 Public Sub mServer1_Click()
-
+   'Server 1 auswgewählt
    sServerIP = sServerIP1
    Print sServerIP
    sBenutzer = sBenutzer1 
@@ -372,11 +357,10 @@ Public Sub mServer1_Click()
    sSenden = " scp -P " & sPort & " -r ~/DataSCP "
    sHolen = " scp -P " & sPort & " -r "
    Print sSenden & "        |       " & sHolen
-
 End
 
 Public Sub mServer2_Click()
-
+   'Server 2 ausgewählt
    sServerIP = sServerIP2
    Print sServerIP
    sBenutzer = sBenutzer2 
@@ -387,11 +371,10 @@ Public Sub mServer2_Click()
    sSenden = " scp -P " & sPort & " -r ~/DataSCP "
    sHolen = " scp -P " & sPort & " -r "
    Print sSenden & "        |       " & sHolen
-
 End
 
 Public Sub mServer3_Click()
-
+   'Server 3 ausgewählt
    sServerIP = sServerIP3
    Print sServerIP
    sBenutzer = sBenutzer3 
@@ -402,11 +385,10 @@ Public Sub mServer3_Click()
    sSenden = " scp -P " & sPort & " -r ~/DataSCP "
    sHolen = " scp -P " & sPort & " -r "
    Print sSenden & "        |       " & sHolen
-
 End
 
 Public Sub mServer4_Click()
-
+   'Server 4 ausgewählt
    sServerIP = sServerIP4
    Print sServerIP
    sBenutzer = sBenutzer4 
@@ -417,5 +399,4 @@ Public Sub mServer4_Click()
    sSenden = " scp -P " & sPort & " -r ~/DataSCP "
    sHolen = " scp -P " & sPort & " -r "
    Print sSenden & "        |       " & sHolen
-
-End
+End 
