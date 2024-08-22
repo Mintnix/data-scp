@@ -218,6 +218,10 @@ Public Sub Menu5_Click()
          Try Shell FMain.sTerminal & " -x" & " ssh " & FMain.sBenutzer & "@" & FMain.sServerIP & " -p" & FMain.sPort & " rm -rf DataSCP/*"
          If Error Then Message("Fehler", "ok")
          Wait
+      Else If FMain.sTerminal = "konsole" Then 
+         Try Shell FMain.sTerminal & " -e" & " ssh " & FMain.sBenutzer & "@" & FMain.sServerIP & " -p" & FMain.sPort & " rm -rf DataSCP/*"
+         If Error Then Message("Fehler", "ok")
+         Wait
       Else
          Try Shell FMain.sTerminal & " --" & " ssh " & FMain.sBenutzer & "@" & FMain.sServerIP & " -p" & FMain.sPort & " rm -rf DataSCP/*"
          If Error Then Message("Fehler", "ok")

@@ -1,3 +1,14 @@
+* Tue Jul 23 2024 Mintnix <pcspezialist@arcor.de> 2.2.5
+- Dateiexplorer Menüpunkt Server leeren sollte nun auch unter KDE funktionieren
+
+* Tue Jul 23 2024 Mintnix <pcspezialist@arcor.de> 2.2.4
+- nochmals kleinen Fehler unter KDE berichtigt
+
+* Tue Jul 23 2024 Mintnix <pcspezialist@arcor.de> 2.2.4
+- Anpassungen für die Verwendung unter KDE
+- KDE Abhängigkeiten aufgelöst
+- Fehler unter KDE behoben
+
 * Thu May 30 2024 Mintnix <pcspezialist@arcor.de> 2.2.3
 
 * Thu May 30 2024 Mintnix <pcspezialist@arcor.de> 2.2.3

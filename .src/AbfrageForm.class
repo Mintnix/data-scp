@@ -33,32 +33,32 @@ Public sServerName4 As String
 
 
 Public Sub Form_Open()
+'' Was nach Öffnen des Dialogs geschieht
+   Dim hFile As Stream
+   Dim sLine1 As String     ' Dateimanager
+   Dim sLine2 As String    ' Terminal
+   Dim sLine3 As String    ' ServerIP1
+   Dim sLine4 As String    ' Benutzername1
+   Dim sLine5 As String    ' SSH Port1
+   Dim sLine6 As String    ' Servername1
+   Dim sLine7 As String    ' ServerIP2
+   Dim sLine8 As String    ' Benutzername2
+   Dim sLine9 As String    ' SSH Port2
+   Dim sLine10 As String    ' Servername2
+   Dim sLine11 As String    ' ServerIP3
+   Dim sLine12 As String    ' Benutzername3
+   Dim sLine13 As String    ' SSH Port3
+   Dim sLine14 As String    ' Servername3
+   Dim sLine15 As String    ' ServerIP4
+   Dim sLine16 As String    ' Benutzername4
+   Dim sLine17 As String    ' SSH Port4
+   Dim sLine18 As String    ' Servername4
+   Dim sLine19 As String    ' minimiert
+   Dim sLine20 As String    ' aktiv
+   Dim sLine21 As String    ' Farbe
 
-Dim hFile As Stream
-Dim sLine1 As String     ' Dateimanager
-Dim sLine2 As String    ' Terminal
-Dim sLine3 As String    ' ServerIP1
-Dim sLine4 As String    ' Benutzername1
-Dim sLine5 As String    ' SSH Port1
-Dim sLine6 As String    ' Servername1
-Dim sLine7 As String    ' ServerIP2
-Dim sLine8 As String    ' Benutzername2
-Dim sLine9 As String    ' SSH Port2
-Dim sLine10 As String    ' Servername2
-Dim sLine11 As String    ' ServerIP3
-Dim sLine12 As String    ' Benutzername3
-Dim sLine13 As String    ' SSH Port3
-Dim sLine14 As String    ' Servername3
-Dim sLine15 As String    ' ServerIP4
-Dim sLine16 As String    ' Benutzername4
-Dim sLine17 As String    ' SSH Port4
-Dim sLine18 As String    ' Servername4
-Dim sLine19 As String    ' minimiert
-Dim sLine20 As String    ' aktiv
-Dim sLine21 As String    ' Farbe
 
-
-hFile = Open "~/.datascp.txt" For Read       'Datei öffnen und einlesen
+   hFile = Open "~/.datascp.txt" For Read       'Datei öffnen und einlesen
 
    Line Input #hFile, sLine1
    Line Input #hFile, sLine2
@@ -132,44 +132,54 @@ hFile = Open "~/.datascp.txt" For Read       'Datei öffnen und einlesen
    ColorButton1.Value = sProgrammfarbe
 
 ' Abfrage falls sLine1 leer sein sollte
-If sDateimanager = "" Then ComboBox1.Text = "Linux auswählen"
-If sLine1 > "" Then ComboBox1.Text = "eigene Einstellung"
-If sLine1 = "nemo" Then ComboBox1.Text = "Linux Mint - Cinnamon"
-If sLine1 = "thunar" Then ComboBox1.Text = "Linux Mint - Xfce"
-If sLine1 = "caja" Then ComboBox1.Text = "Linux Mint - Mate" 
-If sLine1 = "konsole" Then ComboBox1.Text = "Kubuntu"
-If sLine1 = "nautilus" Then ComboBox1.Text = "Ubuntu"
+   If sDateimanager = "" Then ComboBox1.Text = "Linux auswählen"
+   If sLine1 > "" Then ComboBox1.Text = "eigene Einstellung"
+   If sLine1 = "nemo" Then ComboBox1.Text = "Linux Mint - Cinnamon"
+   If sLine1 = "thunar" Then ComboBox1.Text = "Linux Mint - Xfce"
+   If sLine1 = "caja" Then ComboBox1.Text = "Linux Mint - Mate" 
+   If sLine1 = "dolphin" Then ComboBox1.Text = "Kubuntu"
+   If sLine1 = "nautilus" Then ComboBox1.Text = "Ubuntu"
 
-If ComboBox1.Text = "Linux auswählen" Then TextBox1.Text = "Server IP-Adresse"
-If ComboBox1.Text = "Linux auswählen" Then TextBox2.Text = "Benutzername auf dem Server"
-If ComboBox1.Text = "Linux auswählen" Then TextBox3.Text = "SSH Port"
-If ComboBox1.Text = "Linux auswählen" Then TextBox4.Text = "Serverbezeichnung"
-If ComboBox1.Text = "eigene Einstellung" Then FMain.sGlobal2 = sTerminal
-If ComboBox1.Text = "eigene Einstellung" Then FMain.sGlobal1 = sDateimanager
+   If ComboBox1.Text = "Linux auswählen" Then TextBox1.Text = "Server IP-Adresse"
+   If ComboBox1.Text = "Linux auswählen" Then TextBox2.Text = "Benutzername auf dem Server"
+   If ComboBox1.Text = "Linux auswählen" Then TextBox3.Text = "SSH Port"
+   If ComboBox1.Text = "Linux auswählen" Then TextBox4.Text = "Serverbezeichnung"
+   If ComboBox1.Text = "eigene Einstellung" Then FMain.sGlobal2 = sTerminal
+   If ComboBox1.Text = "eigene Einstellung" Then FMain.sGlobal1 = sDateimanager
 
 ' Hier wird das richtige Terminal für die entsprechende Ubgebung gewählt
-If ComboBox1.Text = "Linux Mint - Cinnamon" Then sTerminal = "gnome-terminal"
-If ComboBox1.Text = "Linux Mint - Xfce" Then sTerminal = "xfce4-terminal"
-If ComboBox1.Text = "Linux Mint - Mate" Then sTerminal = "mate-terminal" 
-If ComboBox1.Text = "Kubuntu" Then sTerminal = "konsole"
-If ComboBox1.Text = "Ubuntu" Then sTerminal = "gnome-terminal"
+   If ComboBox1.Text = "Linux Mint - Cinnamon" Then sTerminal = "gnome-terminal"
+   If ComboBox1.Text = "Linux Mint - Xfce" Then sTerminal = "xfce4-terminal"
+   If ComboBox1.Text = "Linux Mint - Mate" Then sTerminal = "mate-terminal" 
+   If ComboBox1.Text = "Kubuntu" Then sTerminal = "konsole"
+   If ComboBox1.Text = "Ubuntu" Then sTerminal = "gnome-terminal"
 
-If Exist("~/DataSCP") = True Then Label1.Text = "Der Arbeitsordner existiert schon \nund befindet sich im Homeverzeichnis\n mit Namen DataSCP."
+   If Exist("~/DataSCP") = True Then Label1.Text = "Der Arbeitsordner existiert schon \nund befindet sich im Homeverzeichnis\n mit Namen DataSCP."
 
 End
 
 
 Public Sub Button5_Click()
    ' den SSH Server installieren
-   If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x apt install openssh-server" Else Shell sTerminal & " -- apt install openssh-server" Wait
-
+   If sTerminal = "xfce4-terminal" Then
+      Shell sTerminal & " -x apt install openssh-server" Wait 
+   Else If sTerminal = "konsole" Then 
+      Shell sTerminal & " -e sudo apt install openssh-server" Wait 
+   Else     
+      Shell sTerminal & " -- apt install openssh-server" Wait
+   Endif 
 End
 
 
 Public Sub Button7_Click()
    ' den Server wieder löschen
-    If sTerminal = "xfce4-terminal" Then Shell sTerminal & " -x apt remove openssh-server" Else Shell sTerminal & " -- apt remove openssh-server" Wait 
-       
+   If sTerminal = "xfce4-terminal" Then 
+      Shell sTerminal & " -x apt remove openssh-server" Wait 
+   Else If sTerminal = "konsole" Then 
+      Shell sTerminal & " -e sudo apt remove openssh-server" Wait 
+   Else 
+      Shell sTerminal & " -- apt remove openssh-server" Wait 
+   Endif  
 End
 
 
@@ -230,36 +240,33 @@ Public Sub Button3_Click()
    AbfrageForm.Close
    TrayIcons.DeleteAll
    FMain.Close
-
 End
 
 
 Public Sub ComboBox1_DblClick()
    'eigene Einstellungsdialog öffnen
     If ComboBox1.Text = "eigene Einstellung" Then eigeneEinstellung.Show
-
 End
 
 
 Public Sub Button1_Click()
    'Den Ordner der SSH Serverliste öffnen, um auf die Datei known_hosts zugreifen zu können
-   Shell sDateimanager & " -- ~/.ssh/"
-
+   If Desktop.Type = "KDE" Then 
+      Shell "dolphin ~/.ssh/"
+   Else 
+      Desktop.Open("~/.ssh/")
+   Endif 
 End
 
 
 Public Sub ColorButton1_Change()
-
+   'Farbe ändern
     AbfrageForm.Background = ColorButton1.Color
     sProgrammfarbe = ColorButton1.Color
-       
-
 End
 
 Public Sub ColorButton1_MouseWheel()
-
-     'Standartfarbe wiederherstellen!
+   'Standartfarbe wiederherstellen!
    FMain.sProgrammfarbe = 12582911
    ColorButton1.Value = 12582911
-
 End
