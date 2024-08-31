@@ -33,7 +33,6 @@
       MoveScaled(41,8,71,68)
       Drop = True
       Border = False
-      ShowDetailed = True
     }
     { FileView2 FileView
       MoveScaled(115,8,49,68)

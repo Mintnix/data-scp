@@ -75,10 +75,11 @@ End
 
 
 Public Sub FileView2_Drop()           ''Kopieren und ersetzen Feld rechts
-  Dim Frage As Integer
+
+   Dim Frage As Integer
   ZIEL = FileView2.Dir &/ QUELLDATEI
   Print ZIEL
-
+  
   If Not Exist(ZIEL) Then
     Try Copy QUELLE &/ QUELLDATEI To ZIEL
       TextLabel2.Text = "Erfolgreich kopiert."
@@ -105,10 +106,11 @@ End
 
 
 Public Sub FileView1_Drop()            ''Kopieren und ersetzen Feld links
+
   Dim Frage As Integer
   ZIEL = FileView1.Dir &/ QUELLDATEI
   Print ZIEL
-
+  
   If IsDir(QUELLE &/ QUELLDATEI) = True Then
      TextLabel1.Text = "Verzeichnis kopieren geht nicht."
      Else If Not Exist(ZIEL) Then 
@@ -133,7 +135,7 @@ Public Sub FileView1_Drop()            ''Kopieren und ersetzen Feld links
      If Frage = 2 Then TextLabel1.Text = "Nix passiert."
      FileView1.Reload
   Endif 
-End
+End 
 
 Public Sub FileView2_KeyRelease()         'Löschen mit Entf-Taste
   QUELLE = FileView2.Dir
@@ -157,36 +159,6 @@ Public Sub FileView1_KeyRelease()         'Löschen mit Entf-Taste
   FileView1.Reload
 End
 
-
-Public Sub FileView2_MouseDrag()         'Datei markieren und ziehen zum Kopieren
-   QUELLE = FileView2.Dir
-   QUELLDATEI = FileView2.Current
-   Print QUELLE &/ QUELLDATEI
-   If IsDir(QUELLE &/ QUELLDATEI) = True Then
-      TextLabel2.Text = "Verzeichnis kann nicht kopiert werden."
-   Else If QUELLDATEI = "" Then 
-      TextLabel2.Text = "Nicht bereit zum Kopieren."
-   Else
-      TextLabel2.Text = "Bereit " & QUELLDATEI & " zum Kopieren."
-   Endif 
-   FileView2.Drag(FileView2.Current)
-
-End
-
-Public Sub FileView1_MouseDrag()          'Datei markieren und ziehen zum Kopieren
-   QUELLE = FileView1.Dir
-   QUELLDATEI = FileView1.Current
-   Print QUELLE &/ QUELLDATEI
-   If IsDir(QUELLE &/ QUELLDATEI) = True Then
-      TextLabel2.Text = "Verzeichnis kann nicht kopiert werden."
-   Else If QUELLDATEI = "" Then 
-      TextLabel1.Text = "Nicht bereit zum Kopieren."
-   Else
-      TextLabel1.Text = "Bereit " & QUELLDATEI & " zum Kopieren."
-   Endif 
-   FileView2.Drag(FileView2.Current)
-End
-
 Public Sub Menu2_Click()
    'Versteckte Dateien anzeigen
    If Menu2.Checked = True Then FileView1.ShowHidden = True Else FileView1.ShowHidden = False
@@ -205,27 +177,61 @@ End
 
 Public Sub mHilfeMenu_Click()
    ' Hilfe zum Dateiexplorer
-   Message.Info("Der Dateiexplorer zeigt auf der linken Seite den Home-Bereich an\n und auf der rechten Seite wird der Arbeitsordner ~/DataSCP präsentiert.\n Hier kann man nun Dateien, die man senden oder empfangen will,\n gewünscht kopieren. Löschen von Dateien ist auch möglich. Diese\n werden in den Papierkorb verschoben.\n Vorsicht bei der Option zum Leeren des Server-Arbeitsordners.")
+   Message.Info("Der Dateiexplorer zeigt auf der linken Seite den Home-Bereich an\n und auf der rechten Seite wird der Arbeitsordner ~/DataSCP präsentiert.\n Hier kann man nun Dateien, die man versenden oder empfangen will,\n gewünscht kopieren.\n Löschen von Dateien ist auch möglich. Diese werden in den \nPapierkorb verschoben.\n\n Vorsicht bei der Option zum Leeren des Server-Arbeitsordners.\n\n Sollte der Arbeitsordner ein Verzeichnis beinhalten,\n benutzen Sie für den Zugriff den Distributions-eigenen Dateimanager.")
 End
 
 Public Sub Menu5_Click()
    '' Dateien auf dem Server löschen
    Dim Frage As Integer
 
+   'Fenster verstecken um Fokus auf das Terminal zu lenken
+   Dateiexplorer.Hide
+
    Frage = Message.Question("Vorsicht!\n\n Wirklich die Dateien, im Arbeitsordner\n ~/DataSCP des Servers löschen?\n Das Löschen ist endgültig.", "JA", "NEIN")
    If Frage = 1 Then 
       If FMain.sTerminal = "xfce4-terminal" Then 
-         Try Shell FMain.sTerminal & " -x" & " ssh " & FMain.sBenutzer & "@" & FMain.sServerIP & " -p" & FMain.sPort & " rm -rf DataSCP/*"
+         Try Shell FMain.sTerminal & " -x" & " ssh " & FMain.sBenutzer & "@" & FMain.sServerIP & " -p" & FMain.sPort & " rm -rf DataSCP/*" Wait 
          If Error Then Message("Fehler", "ok")
          Wait
       Else If FMain.sTerminal = "konsole" Then 
-         Try Shell FMain.sTerminal & " -e" & " ssh " & FMain.sBenutzer & "@" & FMain.sServerIP & " -p" & FMain.sPort & " rm -rf DataSCP/*"
+         Try Shell FMain.sTerminal & " -e" & " ssh " & FMain.sBenutzer & "@" & FMain.sServerIP & " -p" & FMain.sPort & " rm -rf DataSCP/*" Wait 
          If Error Then Message("Fehler", "ok")
          Wait
       Else
-         Try Shell FMain.sTerminal & " --" & " ssh " & FMain.sBenutzer & "@" & FMain.sServerIP & " -p" & FMain.sPort & " rm -rf DataSCP/*"
+         Try Shell FMain.sTerminal & " --" & " ssh " & FMain.sBenutzer & "@" & FMain.sServerIP & " -p" & FMain.sPort & " rm -rf DataSCP/*" Wait
          If Error Then Message("Fehler", "ok")
          Wait 
       Endif 
-   Endif 
+   Endif
 End
+
+
+Public Sub FileView1_Select()
+   'Datei auswählen und zum Kopieren bereitstellen
+    FileView2.Current = ""              'Selektion im anderen Feld aufheben
+   QUELLE = FileView1.Dir
+     QUELLDATEI = FileView1.Current
+    ' Print QUELLE &/ QUELLDATEI
+     If IsDir(QUELLE &/ QUELLDATEI) = True Then
+        TextLabel2.Text = "Verzeichnis kann nicht kopiert werden."
+     Else If QUELLDATEI = "" Then 
+        TextLabel1.Text = "Nicht bereit zum Kopieren."
+     Else
+        TextLabel1.Text = "Bereit " & QUELLDATEI & " zum Kopieren."
+     Endif 
+End
+
+Public Sub FileView2_Select()
+   'Datei auswählen und zum Kopieren bereitmachen
+    FileView1.Current = ""             'Selektion im anderen Feld aufheben
+   QUELLE = FileView2.Dir
+    QUELLDATEI = FileView2.Current
+    'Print QUELLE &/ QUELLDATEI
+    If IsDir(QUELLE &/ QUELLDATEI) = True Then
+       TextLabel2.Text = "Verzeichnis kann nicht kopiert werden."
+    Else If QUELLDATEI = "" Then 
+       TextLabel2.Text = "Nicht bereit zum Kopieren."
+    Else
+       TextLabel2.Text = "Bereit " & QUELLDATEI & " zum Kopieren."
+    Endif 
+End 
