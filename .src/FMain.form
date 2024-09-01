@@ -2,7 +2,7 @@
 
 { Form Form
   MoveScaled(382.2857,17.2857,44,36)
-  Background = &HBFFFFF&
+  Background = &HBFFFFF
   Icon = Picture["data-scp.png"]
   Resizable = False
   Border = False
@@ -59,35 +59,35 @@
       MoveScaled(1,1,38,9)
       Font = Font["Bold"]
       Background = Color.Background
-      Foreground = &H0000FF&
+      Foreground = &H0000FF
       ToolTip = ("Öffnet den Arbeitsordner, in den Sie alles \nhineinziehen/legen was an den Server\ngeschickt werden soll, bzw. der die Daten\nvom Server nach dem Abholen enthält.")
       Text = Shortcut(("Arbeitsordner anzeigen"), "a")
     }
     { Button1 Button
       MoveScaled(1,16,38,4)
       Background = Color.Background
-      Foreground = &H007F00&
+      Foreground = &H007F00
       ToolTip = ("Holt Daten vom Arbeitsordner\n\"DataSCP\" vom Server und\nlegt sie im eigenen \nArbeitsordner ab.")
       Text = Shortcut(("Daten vom Server laden       |←"), "l")
     }
     { Button2 Button
       MoveScaled(1,11,38,4)
       Background = Color.Background
-      Foreground = &H007F00&
+      Foreground = &H007F00
       ToolTip = ("Sendet alles, was im aktuellen Zeitpunkt\nim Arbeitsordner vorhanden ist, an den\nentfernten Rechner/Server.")
       Text = Shortcut(("Daten zum Server senden    |→"), "s")
     }
     { Button3 Button
       MoveScaled(0,26,40,3)
       Font = Font["Bold"]
-      Foreground = &HFF0000&
+      Foreground = &HFF0000
       ToolTip = ("Beendet das Programm.")
       Text = Shortcut(("Beenden"), "B")
     }
     { Label2 Label
       MoveScaled(12,21,27,4)
       Font = Font["Italic"]
-      Foreground = &HA0A0A0&
+      Foreground = &HA0A0A0
       ToolTip = ("... noch mehr Infos ?")
       Alignment = Align.Center
       Text = ("Datentransfer - secure copy")

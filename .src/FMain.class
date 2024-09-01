@@ -197,7 +197,7 @@ Public Sub Button2_Click()
    Else If sTerminal = "konsole" Then
       Shell sTerminal & " -e" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Wait 
    Else 
-      Shell sTerminal & " --" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Wait
+      Shell sTerminal & " --" & sSenden & sBenutzer & "@" & sServerIP & ":~/" Wait 
    Catch    'Fehlerbehandlung hier ? oder wie unten nach endif ?
       If Error Then Message("Fehler", "OK")
    Endif 
