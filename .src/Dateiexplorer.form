@@ -2,6 +2,7 @@
 
 { Form Form
   MoveScaled(0,0,171.4286,92.8571)
+  Icon = Picture["data-scp.png"]
   Resizable = False
   Utility = True
   Centered = True
