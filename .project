@@ -2,7 +2,7 @@
 Title=Data-SCP
 Startup=Trayicontrick
 Icon=data-scp.png
-Version=2.2.5
+Version=2.2.6
 Component=gb.image
 Component=gb.gtk3
 Component=gb.form
@@ -20,6 +20,7 @@ Language=de
 ControlPublic=1
 ModulePublic=1
 ShowDeprecated=1
+ForceBytecodeVersion=3.19
 Maintainer=Mintnix
 Vendor=Mintnix
 Address=pcspezialist@arcor.de
